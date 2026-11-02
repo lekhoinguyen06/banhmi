@@ -2,7 +2,8 @@ import { PAGE, TEXT } from "../banhmi";
 
 PAGE("docs::introduction", {});
 
-TEXT(`
+TEXT(
+  `
 # 🍞 banh mi
 
 "bánh mì" is a Vietnamese word that means "bread".
@@ -17,4 +18,6 @@ We feels there is the lack of:
 - Parameterization
 
 Therefore, we created a new abstraction layer called "banh mi" to address these issues.
-  `);
+  `,
+  { viewRefs: ["$s"] },
+);

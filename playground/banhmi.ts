@@ -5,11 +5,12 @@ const domains = [
   "docs::concepts",
   "docs::preference",
   "docs::getstarted",
-  "docs::installation",
+  "docs::getstarted::installation",
+  "docs::getstarted::usage",
   "docs::examples",
 ] as const;
 type Domain = (typeof domains)[number];
-const views = ["s", "m", "l"] as const;
+const views = ["$s", "$m", "$l"] as const;
 type View = (typeof views)[number];
 
 const banhmi = getBanhMi<Domain, View>({
