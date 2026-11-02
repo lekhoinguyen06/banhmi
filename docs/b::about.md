@@ -1,0 +1,16 @@
+
+# banh mi
+
+"bánh mì" is a Vietnamese word that means "bread".
+
+# Why
+
+Like any breakthroughs, the abstraction level increases.
+However, the current context management practices using 'SKILL.md' is not enough.
+We feels there is the lack of:
+- Domain management
+- Type safety
+- Parameterization
+
+Therefore, we created a new abstraction layer called "banh mi" to address these issues.
+  

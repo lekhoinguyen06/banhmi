@@ -1,0 +1,17 @@
+{
+  "name": "banhmi",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run index.ts",
+    "play": "bun run playground/index.ts",
+    "build": "bunup"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bunup": "^0.16.32"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  }
+}
