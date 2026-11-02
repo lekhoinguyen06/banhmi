@@ -3,7 +3,7 @@ import { PAGE, TEXT } from "../banhmi";
 PAGE("docs::introduction", {});
 
 TEXT(`
-# banh mi
+# 🍞 banh mi
 
 "bánh mì" is a Vietnamese word that means "bread".
 

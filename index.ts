@@ -147,7 +147,7 @@ export function getBanhMi<D extends string, V extends string>({
         fs.writeFileSync(outputFilePath, outputContent);
       }
 
-      console.log(`Baked ${pages.size} files into ${outDir}`);
+      console.log(`Baked ${pages.size} 🍞 into ${outDir}`);
     },
   };
 }
