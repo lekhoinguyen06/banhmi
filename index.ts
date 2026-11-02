@@ -159,8 +159,6 @@ export function getBanhMi<D extends string, V extends string>({
       await load(srcDir, extension);
 
       for (const [domain, page] of pages.entries()) {
-        const outputFileName = `${prefix}${domain}.md`;
-        const outputFilePath = path.join(outDir, outputFileName);
         let outputContent = page.content;
 
         // Domain references: If a page has domainRefs, we will append the content of the referenced domains to the current page
@@ -175,15 +173,17 @@ export function getBanhMi<D extends string, V extends string>({
           }
         }
 
+        const outputFileName = `${prefix}${domain}[${outputContent.length}].md`;
+        const outputFilePath = path.join(outDir, outputFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(outputFilePath, outputContent);
       }
 
       for (const [domain, page] of viewPages.entries()) {
-        const outputFileName = `${prefix}${domain}.md`;
-        const outputFilePath = path.join(outDir, outputFileName);
         let outputContent = page.content;
 
+        const outputFileName = `${prefix}${domain}[${outputContent.length}].md`;
+        const outputFilePath = path.join(outDir, outputFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(outputFilePath, outputContent);
       }

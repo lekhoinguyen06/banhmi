@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun run index.ts",
-    "play": "bun run playground/index.ts",
+    "bake": "bun run playground/index.ts",
     "build": "bunup"
   },
   "devDependencies": {
