@@ -1,6 +1,6 @@
 import { PAGE, TEXT } from "../banhmi";
 
-PAGE("docs::preference", {});
+PAGE("dev::preference", {});
 
 TEXT(
   `

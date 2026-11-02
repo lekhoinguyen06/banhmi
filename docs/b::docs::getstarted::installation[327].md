@@ -5,7 +5,9 @@
 ## Installation
 
 Make sure you have Node or any JavaScript runtime installed.
-  ```bash
+  
+
+```bash
 
 npm install -D banhmi
 
@@ -16,3 +18,4 @@ bun add -D banhmi
 yarn add -D banhmi
   
 ```
+

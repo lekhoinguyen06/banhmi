@@ -96,7 +96,7 @@ export function getBanhMi<D extends string, V extends string>({
       });
     },
     CODE(code: string, metadata?: BaseMetadata<D, V> & { language?: string }) {
-      const codeContent = `\`\`\`${metadata?.language}\n${code}\n\`\`\``;
+      const codeContent = `\n\n\`\`\`${metadata?.language}\n${code}\n\`\`\`\n\n`;
       appendBlockToPage({
         pages,
         viewPages,
