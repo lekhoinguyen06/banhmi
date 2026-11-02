@@ -122,9 +122,24 @@ export function getBanhMi<D extends string, V extends string>({
 
       // Write the pages keys to the output directory
       for (const [domain, page] of pages.entries()) {
+        console.log(`Writing: ${domain}`);
         const outputFileName = `${prefix}${domain}.md`;
         const outputFilePath = path.join(outDir, outputFileName);
-        const outputContent = page.content;
+        let outputContent = page.content;
+
+        // Reference
+        if (page.metadata?.domainRefs) {
+          for (const [otherDomain, otherPage] of pages.entries()) {
+            if (page.metadata.domainRefs.includes(otherDomain as D)) {
+              console.log(`Referencing: ${otherDomain} in ${domain}`);
+              const refMsg = `\n\n<-- [Bánh Mì compiler message: Referenced from domain: ${otherDomain}]\n`;
+              const endRefMsg = `\n<-- [Bánh Mì compiler message: End of reference from domain: ${otherDomain}]\n\n`;
+              const refContent = `${refMsg}\n${otherPage.content}\n${endRefMsg}\n`;
+              outputContent = outputContent.concat(refContent);
+            }
+          }
+        }
+
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(outputFilePath, outputContent);
         console.log(`Written: ${outputFilePath}`);
