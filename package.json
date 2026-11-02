@@ -1,11 +1,35 @@
 {
   "name": "banhmi",
+  "description": "\"bánh mì\" is a Vietnamese word that means \"bread\".",
+  "author": "lekhoinguyen06",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lekhoinguyen06/banhmi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lekhoinguyen06/banhmi/issues"
+  },
+  "keywords": [
+    "skill",
+    "context"
+  ],
+  "license": "MIT",
   "module": "index.ts",
+  "version": "0.1.0",
   "type": "module",
+  "exports": {
+    ".": "./dist/index.ts"
+  },
+  "files": [
+    "dist",
+    "README",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "bun run index.ts",
     "bake": "bun run playground/index.ts",
-    "build": "bunup"
+    "build": "bunup",
+    "publish": "npm pack && npm publish"
   },
   "devDependencies": {
     "@types/bun": "latest",
