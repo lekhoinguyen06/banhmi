@@ -1,5 +1,6 @@
 {
   "name": "banhmi",
+  "version": "0.1.1",
   "description": "\"bánh mì\" is a Vietnamese word that means \"bread\".",
   "author": "lekhoinguyen06",
   "repository": {
@@ -14,11 +15,14 @@
     "context"
   ],
   "license": "MIT",
-  "module": "index.ts",
-  "version": "0.1.0",
   "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.ts"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.cjs"
+    }
   },
   "files": [
     "dist",
