@@ -1,21 +1,21 @@
 import fs from "fs";
 import path from "path";
 
-interface BanhMiProps<D extends string, V extends string> {
+interface BanhMiProps {
   srcDir: string;
   outDir?: string;
   prefix?: string;
   extension?: string;
 }
 
-interface PageType {
+interface PageType<D extends string, V extends string> {
   content: string;
-  metadata?: BaseMetadata;
+  metadata?: BaseMetadata<D, V>;
 }
 
-interface BaseMetadata {
-  domainRefs?: string[];
-  viewRefs?: string[];
+interface BaseMetadata<D extends string, V extends string> {
+  domainRefs?: D[];
+  viewRefs?: V[];
 }
 
 function appendBlockToPage({
@@ -54,18 +54,18 @@ export function getBanhMi<D extends string, V extends string>({
   outDir = "./banhmi/generated",
   prefix = "b::",
   extension = ".mi.ts",
-}: BanhMiProps<D, V>) {
-  const pages: Map<string, PageType> = new Map();
+}: BanhMiProps) {
+  const pages: Map<string, PageType<D, V>> = new Map();
   let currentDomain: D | undefined = undefined;
   return {
-    PAGE(domain: D, metadata: BaseMetadata) {
+    PAGE(domain: D, metadata: BaseMetadata<D, V>) {
       pages.set(domain, { content: "", metadata });
       currentDomain = domain;
     },
-    TEXT(text: string, metadata?: BaseMetadata) {
+    TEXT(text: string, metadata?: BaseMetadata<D, V>) {
       appendBlockToPage({ pages, currentDomain, content: text, metadata });
     },
-    CODE(code: string, metadata?: BaseMetadata & { language?: string }) {
+    CODE(code: string, metadata?: BaseMetadata<D, V> & { language?: string }) {
       const codeContent = `\`\`\`${metadata?.language}\n${code}\n\`\`\``;
       appendBlockToPage({
         pages,
@@ -76,7 +76,7 @@ export function getBanhMi<D extends string, V extends string>({
     },
     TABLE(
       table: { columns: string[]; rows: string[][] },
-      metadata?: BaseMetadata,
+      metadata?: BaseMetadata<D, V>,
     ) {
       const tableHeader = `| ${table.columns.join(" | ")} |\n| ${table.columns.map(() => "---").join(" | ")} |\n`;
       const tableRows = table.rows
@@ -90,7 +90,10 @@ export function getBanhMi<D extends string, V extends string>({
         metadata,
       });
     },
-    FRONTMATTER(frontmatter: Record<string, string>, metadata?: BaseMetadata) {
+    FRONTMATTER(
+      frontmatter: Record<string, string>,
+      metadata?: BaseMetadata<D, V>,
+    ) {
       const fontmatterContent = `---\n${Object.entries(frontmatter)
         .map(([key, value]) => `${key}: ${value}`)
         .join("\n")}\n---\n`;
