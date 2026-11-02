@@ -69,8 +69,12 @@ This is the documentation for My App.
 
 ## Demo
 
-### Zed
+### Editors
 
-![Zed Editor](assets/zed-editor.png)
+We used `b::` prefix for our own context base. As you can see, the file names are the Bánh Mì query patterns. A `b::docs::$s` is a view page for the blocks with the `$s` tag.
 
-We used `b::` prefix. As you can see, the file names are the Bánh Mì query patterns. A `b::docs::$s` is a view page for the `docs` domain with the `s` tag.
+Note: VSCode suggestion in chatbox only accepts alphabet characters, still if you type `bdocs` it will still work.
+
+![Zed Editor](assets/zed-editor-demo.png)
+
+![VSCode Editor](assets/vscode-editor-demo.png)
