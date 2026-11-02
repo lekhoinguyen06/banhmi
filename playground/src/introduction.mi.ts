@@ -1,6 +1,6 @@
-import { PAGE, TEXT } from "./banhmi";
+import { PAGE, TEXT } from "../banhmi";
 
-PAGE("about", {});
+PAGE("docs::introduction", {});
 
 TEXT(`
 # banh mi

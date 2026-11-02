@@ -1,6 +1,13 @@
 import { getBanhMi } from "../index";
 
-const domains = ["all", "about", "preference"] as const;
+const domains = [
+  "docs::introduction",
+  "docs::concepts",
+  "docs::preference",
+  "docs::getstarted",
+  "docs::installation",
+  "docs::examples",
+] as const;
 type Domain = (typeof domains)[number];
 const views = ["s", "m", "l"] as const;
 type View = (typeof views)[number];

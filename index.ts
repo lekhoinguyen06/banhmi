@@ -107,14 +107,19 @@ export function getBanhMi<D extends string, V extends string>({
     async write() {
       console.log(`Baking...`);
       // Traverse all files with the extension & load the module to inject the content
-      async function load(srcDir: string, extension: string) {
-        const files = fs
-          .readdirSync(srcDir)
-          .filter((file) => file.endsWith(extension));
-        for (const file of files) {
-          const filePath = path.join(srcDir, file);
-          await import(filePath);
-          console.log(`Loaded: ${filePath}`);
+
+      async function load(directory: string, extension: string) {
+        for (const entry of fs.readdirSync(directory, {
+          withFileTypes: true,
+        })) {
+          const entryPath = path.join(directory, entry.name);
+
+          if (entry.isDirectory()) {
+            await load(entryPath, extension);
+          } else if (entry.isFile() && entry.name.endsWith(extension)) {
+            await import(entryPath);
+            console.log(`Loaded: ${entryPath}`);
+          }
         }
       }
 
@@ -122,7 +127,6 @@ export function getBanhMi<D extends string, V extends string>({
 
       // Write the pages keys to the output directory
       for (const [domain, page] of pages.entries()) {
-        console.log(`Writing: ${domain}`);
         const outputFileName = `${prefix}${domain}.md`;
         const outputFilePath = path.join(outDir, outputFileName);
         let outputContent = page.content;
@@ -131,7 +135,6 @@ export function getBanhMi<D extends string, V extends string>({
         if (page.metadata?.domainRefs) {
           for (const [otherDomain, otherPage] of pages.entries()) {
             if (page.metadata.domainRefs.includes(otherDomain as D)) {
-              console.log(`Referencing: ${otherDomain} in ${domain}`);
               const refMsg = `\n\n<-- [Bánh Mì compiler message: Referenced from domain: ${otherDomain}]\n`;
               const endRefMsg = `\n<-- [Bánh Mì compiler message: End of reference from domain: ${otherDomain}]\n\n`;
               const refContent = `${refMsg}\n${otherPage.content}\n${endRefMsg}\n`;
@@ -142,10 +145,9 @@ export function getBanhMi<D extends string, V extends string>({
 
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(outputFilePath, outputContent);
-        console.log(`Written: ${outputFilePath}`);
       }
 
-      console.log(`Baked! ${pages.size} files written to ${outDir}`);
+      console.log(`Baked ${pages.size} files into ${outDir}`);
     },
   };
 }
