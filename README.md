@@ -4,32 +4,64 @@
 
 ## Why
 
-Like any breakthroughs, the abstraction level increases. For AI, implementation is abstracted, and we believe the future is about orchestration, the communication of ideas.
+Like any breakthroughs, the abstraction level increases. In the AI revolution, implementation is abstracted. We believe the future is about orchestration, the communication of ideas.
 
-However, the current context management practices using 'SKILL.md' is not enough.
+However, the current context management practices using `SKILL.md` is not enough.
 We feels there is the lack of:
 
 - Domain management
-- Type safety
+- Context orchestration
 - Parameterization
 
-Therefore, we created a new abstraction layer called "banh mi" to address these issues.
+Therefore, we created "banh mi" to address these issues.
 
 ## How
 
-Your Bánh Mì codebase will be generated into files with names that match Bánh Mì's query patterns.
+Your Bánh Mì codebase will be generated files that:
 
-Bánh Mì for now has 2 main concepts:
+- Match the Banh Mì query patterns.
+- Typescript types & objects storing block content in the Banh Mi query patterns. Used in [Walker](https://walker.vstaffs.com/) projects.
+
+### Page
+
+Every `*.mi.ts` file must start with a `PAGE` block. Subsequent blocks will be added the page.
+
+### Blocks
+
+We provide 4 types of blocks to help you write your documentation:
+
+- `FRONTMATTER` block: for writing frontmatter content.
+- `TEXT` block: for writing text content.
+- `CODE` block: for writing code content.
+- `TABLE` block: for writing table content.
 
 ### Domain
 
-Domain is a group of blocks that encapsulate an idea.
+Domain is a group of blocks that encapsulate an idea. Our recommendation is each domain should be a `PAGE` block.
 
 ### View
 
-However, tree structure is not enough to represent complex ideas relationships. Views allow you to tag each block and the compiler will aggregate these block into a page for each view. An example of this would be small, medium, and large context shortcuts; just like llm-small.txt or llm.txt.
+Domains using tree structure is not enough to represent complex domain relationships. Views allow you to tag each block and the compiler will aggregate these block into a page for each view. An example of this would be small, medium, and large context shortcuts - just like `llm-small.txt` or `llm.txt`.
 
 ## Usage
+
+### Installation
+
+```bash
+# NPM
+npm install banhmi
+
+# PNPM
+pnpm add banhmi
+
+# Yarn
+yarn add banhmi
+
+# Bun
+bun add banhmi
+```
+
+### Declaration
 
 You need to create a file to declare your domains and views.
 For example, you can create a file called `banhmi.ts` in your project root directory with the following content:
@@ -51,9 +83,7 @@ export const { PAGE, TEXT, CODE, TABLE, FRONTMATTER, write } = banhmi;
 export default banhmi;
 ```
 
-Then, you can use the blocks to start writing in any `*.mi.ts` file in your project.
-Remember to use the `PAGE` block at the top of your file to declare the domain and metadata for the page.
-You can use `TEXT`, `CODE`, `TABLE`, and `FRONTMATTER` blocks to add content to the page.
+### Example
 
 ```typescript
 import { PAGE, TEXT } from "./banhmi";
@@ -71,9 +101,9 @@ This is the documentation for My App.
 
 ### Editors
 
-We used `b::` prefix for our own context base. As you can see, the file names are the Bánh Mì query patterns. A `b::docs::$s` is a view page for the blocks with the `$s` tag.
-
-Note: VSCode suggestion in chatbox only accepts alphabet characters, still if you type `bdocs` it will still work.
+We used `b::` prefix for our own `banhmi` context.
+As you can see, the file names are the Bánh Mì query patterns.
+A `b::docs::$s` is a view page for the blocks with the `$s` tag - our own `llm-small.txt`.
 
 ![Zed Editor](assets/zed-editor-demo.png)
 
