@@ -106,5 +106,7 @@ As you can see, the file names are the Bánh Mì query patterns.
 A `b::docs::$s` is a view page for the blocks with the `$s` tag - our own `llm-small.txt`.
 
 ![Zed Editor](assets/zed-editor-demo.png)
+_Zed Editor_
 
 ![VSCode Editor](assets/vscode-editor-demo.png)
+_VSCode Editor_
