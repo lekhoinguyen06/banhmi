@@ -40,5 +40,8 @@
   },
   "peerDependencies": {
     "typescript": "^7"
+  },
+  "dependencies": {
+    "@tanstack/markdown": "^1.2.0"
   }
 }

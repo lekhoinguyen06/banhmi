@@ -1,3 +1,4 @@
+import { renderHtml } from "@tanstack/markdown";
 import fs from "fs";
 import path from "path";
 
@@ -196,20 +197,28 @@ export function getBanhMi<D extends string, V extends string>({
           }
         }
 
-        const outputFileName = `${prefix}${domain}$${outputContent.length}.md`;
-        const outputFilePath = path.join(outDir, outputFileName);
+        const fileName = `${prefix}${domain}$${outputContent.length}`;
+        const markdownFileName = `${fileName}.md`;
+        const htmlFileName = `${fileName}.html`;
+        const markdownOutputFilePath = path.join(outDir, markdownFileName);
+        const htmlOutputFilePath = path.join(outDir, htmlFileName);
         fs.mkdirSync(outDir, { recursive: true });
-        fs.writeFileSync(outputFilePath, outputContent);
+        fs.writeFileSync(markdownOutputFilePath, outputContent);
+        fs.writeFileSync(htmlOutputFilePath, renderHtml(outputContent));
         tsOuput += `export const ${prefix}${domain}$${outputContent.length} = ${JSON.stringify(outputContent)};\n`;
       }
 
       for (const [domain, page] of viewPages.entries()) {
         let outputContent = page.content;
 
-        const outputFileName = `${prefix}${domain}$${outputContent.length}.md`;
-        const outputFilePath = path.join(outDir, outputFileName);
+        const fileName = `${prefix}${domain}$${outputContent.length}`;
+        const markdownFileName = `${fileName}.md`;
+        const htmlFileName = `${fileName}.html`;
+        const markdownOutputFilePath = path.join(outDir, markdownFileName);
+        const htmlOutputFilePath = path.join(outDir, htmlFileName);
         fs.mkdirSync(outDir, { recursive: true });
-        fs.writeFileSync(outputFilePath, outputContent);
+        fs.writeFileSync(markdownOutputFilePath, outputContent);
+        fs.writeFileSync(htmlOutputFilePath, renderHtml(outputContent));
         tsOuput += `export const ${prefix}${domain}$${outputContent.length} = ${JSON.stringify(outputContent)};\n`;
       }
 
@@ -235,7 +244,9 @@ export function getBanhMi<D extends string, V extends string>({
           !newFiles.some(
             (newFile) =>
               `${prefix}${newFile}$${pages.get(newFile)?.content.length}.md` ===
-              file,
+                file ||
+              `${prefix}${newFile}$${pages.get(newFile)?.content.length}.html` ===
+                file,
           ) &&
           file !== "index.ts" &&
           file !== "generated-manifest.json"
