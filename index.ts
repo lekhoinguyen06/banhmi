@@ -1,4 +1,3 @@
-import { renderHtml } from "@tanstack/markdown";
 import fs from "fs";
 import path from "path";
 
@@ -204,7 +203,6 @@ export function getBanhMi<D extends string, V extends string>({
         const htmlOutputFilePath = path.join(outDir, htmlFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(markdownOutputFilePath, outputContent);
-        fs.writeFileSync(htmlOutputFilePath, renderHtml(outputContent));
         tsOuput += `export const ${prefix}${domain}$${outputContent.length} = ${JSON.stringify(outputContent)};\n`;
       }
 
@@ -218,7 +216,6 @@ export function getBanhMi<D extends string, V extends string>({
         const htmlOutputFilePath = path.join(outDir, htmlFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(markdownOutputFilePath, outputContent);
-        fs.writeFileSync(htmlOutputFilePath, renderHtml(outputContent));
         tsOuput += `export const ${prefix}${domain}$${outputContent.length} = ${JSON.stringify(outputContent)};\n`;
       }
 
