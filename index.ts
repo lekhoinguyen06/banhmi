@@ -200,7 +200,7 @@ export function getBanhMi<D extends string, V extends string>({
         const outputFilePath = path.join(outDir, outputFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(outputFilePath, outputContent);
-        tsOuput += `export const ${prefix}${domain}$${outputContent.length} = "hello";\n`;
+        tsOuput += `export const ${prefix}${domain}$${outputContent.length} = ${JSON.stringify(outputContent)};\n`;
       }
 
       for (const [domain, page] of viewPages.entries()) {
@@ -210,7 +210,7 @@ export function getBanhMi<D extends string, V extends string>({
         const outputFilePath = path.join(outDir, outputFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(outputFilePath, outputContent);
-        tsOuput += `export const ${prefix}${domain}$${outputContent.length} = "hello";\n`;
+        tsOuput += `export const ${prefix}${domain}$${outputContent.length} = ${JSON.stringify(outputContent)};\n`;
       }
 
       const tsOutputPath = path.join(outDir, "index.ts");
