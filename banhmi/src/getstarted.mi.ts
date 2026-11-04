@@ -1,12 +1,12 @@
 import { CODE, PAGE, TEXT } from "../banhmi";
 
-PAGE("docs.getstarted", {});
+PAGE("docs_getstarted", {});
 
 TEXT(
   `
 # Let's bake
   `,
   {
-    domainRefs: ["docs.getstarted.installation", "docs.getstarted.usage"],
+    domainRefs: ["docs_getstarted_installation", "docs_getstarted_usage"],
   },
 );

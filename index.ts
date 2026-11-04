@@ -92,7 +92,7 @@ function appendBlockToPage<D extends string, V extends string>({
 export function getBanhMi<D extends string, V extends string>({
   srcDir,
   outDir = "./banhmi/generated",
-  prefix = "b.",
+  prefix = "mi_",
   extension = ".mi.ts",
 }: BanhMiProps): BanhMiType<D, V> {
   const viewPages: Map<string, ViewPageType> = new Map();
@@ -179,6 +179,8 @@ export function getBanhMi<D extends string, V extends string>({
 
       await load(srcDir, extension);
 
+      let tsOuput = "";
+
       for (const [domain, page] of pages.entries()) {
         let outputContent = page.content;
 
@@ -194,20 +196,25 @@ export function getBanhMi<D extends string, V extends string>({
           }
         }
 
-        const outputFileName = `${prefix}${domain}[${outputContent.length}].md`;
+        const outputFileName = `${prefix}${domain}$${outputContent.length}.md`;
         const outputFilePath = path.join(outDir, outputFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(outputFilePath, outputContent);
+        tsOuput += `export const ${prefix}${domain}$${outputContent.length} = "hello";\n`;
       }
 
       for (const [domain, page] of viewPages.entries()) {
         let outputContent = page.content;
 
-        const outputFileName = `${prefix}${domain}[${outputContent.length}].md`;
+        const outputFileName = `${prefix}${domain}$${outputContent.length}.md`;
         const outputFilePath = path.join(outDir, outputFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(outputFilePath, outputContent);
+        tsOuput += `export const ${prefix}${domain}$${outputContent.length} = "hello";\n`;
       }
+
+      const tsOutputPath = path.join(outDir, "index.ts");
+      fs.writeFileSync(tsOutputPath, tsOuput);
 
       console.log(`Baked ${pages.size} 🍞 into ${outDir}`);
     },

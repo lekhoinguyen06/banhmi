@@ -1,6 +1,6 @@
 import { CODE, PAGE, TEXT } from "../banhmi";
 
-PAGE("docs.getstarted.usage", {});
+PAGE("docs_getstarted_usage", {});
 
 TEXT(
   `
@@ -13,7 +13,7 @@ For example, you can create a file called \`banhmi.ts\` in your project root dir
 
   `,
   {
-    viewRefs: ["..s"],
+    viewRefs: ["s"],
   },
 );
 
@@ -34,7 +34,7 @@ CODE(
   export const { PAGE, TEXT, CODE, TABLE, FRONTMATTER, write } = banhmi;
   export default banhmi;
   `,
-  { language: "typescript", viewRefs: ["..s"] },
+  { language: "typescript", viewRefs: ["s"] },
 );
 
 TEXT(`
@@ -55,5 +55,5 @@ TEXT(\`
 This is the documentation for My App.
 \`);
   `,
-  { language: "typescript", viewRefs: ["..s"] },
+  { language: "typescript", viewRefs: ["s"] },
 );

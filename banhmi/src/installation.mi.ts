@@ -1,6 +1,6 @@
 import { CODE, PAGE, TEXT } from "../banhmi";
 
-PAGE("docs.getstarted.installation", {});
+PAGE("docs_getstarted_installation", {});
 
 TEXT(`
 ### Installation

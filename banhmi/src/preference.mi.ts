@@ -1,6 +1,6 @@
 import { PAGE, TEXT } from "../banhmi";
 
-PAGE("dev.preference", {});
+PAGE("dev_preference", {});
 
 TEXT(
   `
@@ -14,5 +14,5 @@ Response:
 - Simple, concise, with TDLR at the top
 - Code snippet to visualize any code changes of necessary
   `,
-  { viewRefs: ["..s"] },
+  { viewRefs: ["s"] },
 );

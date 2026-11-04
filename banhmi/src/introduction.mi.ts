@@ -1,6 +1,6 @@
 import { PAGE, TEXT } from "../banhmi";
 
-PAGE("docs.introduction", {});
+PAGE("docs_introduction", {});
 
 TEXT(
   `
@@ -21,5 +21,5 @@ We feels there is the lack of:
 
 Therefore, we created "banh mi" to address these issues.
   `,
-  { viewRefs: ["..s"] },
+  { viewRefs: ["s"] },
 );
