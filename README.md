@@ -69,9 +69,9 @@ For example, you can create a file called `banhmi.ts` in your project root direc
 ```typescript
 import { getBanhMi } from "banhmi";
 
-const domains = ["app", "app::post", "app::comment", "guide"] as const;
+const domains = ["app", "app_post", "app_comment", "guide"] as const;
 type Domain = (typeof domains)[number];
-const views = ["$s", "$m", "$l"] as const;
+const views = ["s", "m", "l"] as const;
 type View = (typeof views)[number];
 
 const banhmi = getBanhMi<Domain, View>({
@@ -96,17 +96,3 @@ TEXT(`
 This is the documentation for My App.
 `);
 ```
-
-## Demo
-
-### Editors
-
-We used `b::` prefix for our own `banhmi` context.
-As you can see, the file names are the Bánh Mì query patterns.
-A `b::docs::$s` is a view page for the blocks with the `$s` tag - our own `llm-small.txt`.
-
-![Zed Editor](assets/zed-editor-demo.png)
-_Zed Editor_
-
-![VSCode Editor](assets/vscode-editor-demo.png)
-_VSCode Editor_
