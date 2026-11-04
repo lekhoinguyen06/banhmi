@@ -1,7 +1,7 @@
 
 # Preference
 
-This is the Bánh Mì teams preferences when developing and using Bánh Mì.
+This is the Bánh Mì team preferences when developing and using Bánh Mì.
 
 ## Agent
 
@@ -10,6 +10,8 @@ Response:
 - Code snippet to visualize any code changes of necessary
   
 ## Usage
+
+### Declaration
 
 You need to create a file to declare your domains and views.
 For example, you can create a file called `banhmi.ts` in your project root directory with the following content:
@@ -20,12 +22,7 @@ For example, you can create a file called `banhmi.ts` in your project root direc
 
   import { getBanhMi } from "banhmi";
 
-  const domains = [
-    "app",
-    "app::post",
-    "app::comment",
-    "guide",
-  ] as const;
+  const domains = ["app", "app::post", "app::comment", "guide"] as const;
   type Domain = (typeof domains)[number];
   const views = ["$s", "$m", "$l"] as const;
   type View = (typeof views)[number];
@@ -61,14 +58,16 @@ This is the documentation for My App.
 
 "bánh mì" is a Vietnamese word that means "bread".
 
-# Why
+## Why
 
-Like any breakthroughs, the abstraction level increases.
-However, the current context management practices using 'SKILL.md' is not enough.
+Like any breakthroughs, the abstraction level increases. In the AI revolution, implementation is abstracted. We believe the future is about orchestration, the communication of ideas.
+
+However, the current context management practices using `SKILL.md` is not enough.
 We feels there is the lack of:
+
 - Domain management
-- Type safety
+- Context orchestration
 - Parameterization
 
-Therefore, we created a new abstraction layer called "banh mi" to address these issues.
+Therefore, we created "banh mi" to address these issues.
   

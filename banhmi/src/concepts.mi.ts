@@ -1,6 +1,6 @@
 import { PAGE, TEXT } from "../banhmi";
 
-PAGE("docs::concepts", {});
+PAGE("docs.concepts", {});
 
 TEXT(`
 ## Concepts

@@ -1,17 +1,19 @@
 import { CODE, PAGE, TEXT } from "../banhmi";
 
-PAGE("docs::getstarted::usage", {});
+PAGE("docs.getstarted.usage", {});
 
 TEXT(
   `
 ## Usage
+
+### Declaration
 
 You need to create a file to declare your domains and views.
 For example, you can create a file called \`banhmi.ts\` in your project root directory with the following content:
 
   `,
   {
-    viewRefs: ["$s"],
+    viewRefs: ["..s"],
   },
 );
 
@@ -19,12 +21,7 @@ CODE(
   `
   import { getBanhMi } from "banhmi";
 
-  const domains = [
-    "app",
-    "app::post",
-    "app::comment",
-    "guide",
-  ] as const;
+  const domains = ["app", "app::post", "app::comment", "guide"] as const;
   type Domain = (typeof domains)[number];
   const views = ["$s", "$m", "$l"] as const;
   type View = (typeof views)[number];
@@ -37,7 +34,7 @@ CODE(
   export const { PAGE, TEXT, CODE, TABLE, FRONTMATTER, write } = banhmi;
   export default banhmi;
   `,
-  { language: "typescript", viewRefs: ["$s"] },
+  { language: "typescript", viewRefs: ["..s"] },
 );
 
 TEXT(`
@@ -58,5 +55,5 @@ TEXT(\`
 This is the documentation for My App.
 \`);
   `,
-  { language: "typescript", viewRefs: ["$s"] },
+  { language: "typescript", viewRefs: ["..s"] },
 );

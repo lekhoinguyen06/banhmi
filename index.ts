@@ -92,7 +92,7 @@ function appendBlockToPage<D extends string, V extends string>({
 export function getBanhMi<D extends string, V extends string>({
   srcDir,
   outDir = "./banhmi/generated",
-  prefix = "b::",
+  prefix = "b.",
   extension = ".mi.ts",
 }: BanhMiProps): BanhMiType<D, V> {
   const viewPages: Map<string, ViewPageType> = new Map();
