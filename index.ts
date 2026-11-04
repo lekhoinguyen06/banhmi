@@ -160,8 +160,8 @@ export function getBanhMi<D extends string, V extends string>({
     },
     async write(): Promise<void> {
       console.log(`Baking...`);
-      // Traverse all files with the extension & load the module to inject the content
 
+      // Traverse all files with the extension & load the module to inject the content
       async function load(directory: string, extension: string): Promise<void> {
         for (const entry of fs.readdirSync(directory, {
           withFileTypes: true,
@@ -215,6 +215,34 @@ export function getBanhMi<D extends string, V extends string>({
 
       const tsOutputPath = path.join(outDir, "index.ts");
       fs.writeFileSync(tsOutputPath, tsOuput);
+
+      const newFiles = [
+        ...Array.from(pages.keys()),
+        ...Array.from(viewPages.keys()),
+      ];
+
+      // Update the manifest file with the new list of files
+      const manifestPath = path.join(outDir, "generated-manifest.json");
+      fs.writeFileSync(
+        manifestPath,
+        JSON.stringify({ files: [newFiles] }, null, 2),
+      );
+
+      // Remove any files in the output directory that are not in the new list of files
+      const existingFiles = fs.readdirSync(outDir);
+      for (const file of existingFiles) {
+        if (
+          !newFiles.some(
+            (newFile) =>
+              `${prefix}${newFile}$${pages.get(newFile)?.content.length}.md` ===
+              file,
+          ) &&
+          file !== "index.ts" &&
+          file !== "generated-manifest.json"
+        ) {
+          fs.unlinkSync(path.join(outDir, file));
+        }
+      }
 
       console.log(`Baked ${pages.size} 🍞 into ${outDir}`);
     },
