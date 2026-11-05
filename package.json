@@ -1,6 +1,6 @@
 {
   "name": "banhmi",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "\"bánh mì\" is a Vietnamese word that means \"bread\".",
   "author": "lekhoinguyen06",
   "repository": {
@@ -32,7 +32,7 @@
   "scripts": {
     "bake": "bun run banhmi/index.ts",
     "build": "bunup",
-    "publish": "npm pack && npm publish"
+    "publish": "bunup && npm pack && npm publish"
   },
   "devDependencies": {
     "@types/bun": "latest",
