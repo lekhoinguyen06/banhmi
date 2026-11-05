@@ -1,5 +1,9 @@
 # Change log
 
+## v0.1.5
+
+- Fix cleanup machenism from removing view pages files
+
 ## v0.1.4
 
 - Fix publish script to build before publishing

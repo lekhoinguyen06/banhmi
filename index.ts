@@ -180,6 +180,7 @@ export function getBanhMi<D extends string, V extends string>({
       await load(srcDir, extension);
 
       let tsOuput = "";
+      const generatedFiles = new Set<string>();
 
       for (const [domain, page] of pages.entries()) {
         let outputContent = page.content;
@@ -203,6 +204,7 @@ export function getBanhMi<D extends string, V extends string>({
         const htmlOutputFilePath = path.join(outDir, htmlFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(markdownOutputFilePath, outputContent);
+        generatedFiles.add(markdownFileName);
         tsOuput += `export const ${prefix}${domain}$${outputContent.length} = ${JSON.stringify(outputContent)};\n`;
       }
 
@@ -216,6 +218,7 @@ export function getBanhMi<D extends string, V extends string>({
         const htmlOutputFilePath = path.join(outDir, htmlFileName);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(markdownOutputFilePath, outputContent);
+        generatedFiles.add(markdownFileName);
         tsOuput += `export const ${prefix}${domain}$${outputContent.length} = ${JSON.stringify(outputContent)};\n`;
       }
 
@@ -238,13 +241,7 @@ export function getBanhMi<D extends string, V extends string>({
       const existingFiles = fs.readdirSync(outDir);
       for (const file of existingFiles) {
         if (
-          !newFiles.some(
-            (newFile) =>
-              `${prefix}${newFile}$${pages.get(newFile)?.content.length}.md` ===
-                file ||
-              `${prefix}${newFile}$${pages.get(newFile)?.content.length}.html` ===
-                file,
-          ) &&
+          !generatedFiles.has(file) &&
           file !== "index.ts" &&
           file !== "generated-manifest.json"
         ) {
