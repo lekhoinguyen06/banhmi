@@ -1,11 +1,22 @@
 import { loader } from "./loader";
-import type { BanhMiInstance, BanhMiProps, BaseBlock } from "./type";
+import type {
+  BanhMiDomain,
+  BanhMiInstance,
+  BanhMiProps,
+  BanhMiView,
+  BaseBlock,
+} from "./type";
 import { Effect } from "effect";
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
 
 export function bake<D extends string, V extends string>(
   props: BanhMiProps,
 ): BanhMiInstance<D, V> {
+  const domainKeys = new Set(props.domains);
+  const viewKeys = new Set(props.views);
+  const domains = new Map<string, BanhMiDomain>();
+  const views = new Map<string, BanhMiView>();
+
   return {
     TEXT(content: string, options: BaseBlock<D, V>) {},
     CODE(content: string, options: BaseBlock<D, V>) {},

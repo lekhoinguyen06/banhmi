@@ -19,6 +19,8 @@ type View = (typeof views)[number];
 const banhmi = bake<Domain, View>({
   srcDir: "./banhmi",
   outDir: "./banhmi/generated",
+  domains,
+  views,
   plugins: [],
 });
 

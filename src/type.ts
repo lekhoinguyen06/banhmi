@@ -33,8 +33,18 @@ interface TableBlock<D extends string, V extends string> extends BaseBlock<
 // Primatives
 type BanhMiBlock<D extends string, V extends string> =
   TextBlock<D, V> | CodeBlock<D, V> | TableBlock<D, V>;
-type BanhMiDomain = { key: string; name: string; description: string };
-type BanhMiView = { key: string; name: string; description: string };
+export type BanhMiDomain = {
+  key: string;
+  name: string;
+  description: string;
+  blocks: BanhMiBlock<string, string>[];
+};
+export type BanhMiView = {
+  key: string;
+  name: string;
+  description: string;
+  blocks: BanhMiBlock<string, string>[];
+};
 
 /**
  * Lock file structure
@@ -59,7 +69,9 @@ type BanhMiPlugin = (props: BanhMiLock) => void;
 
 export interface BanhMiProps {
   srcDir: string;
-  outDir?: string;
+  outDir: string;
+  domains: readonly string[];
+  views: readonly string[];
   plugins: BanhMiPlugin[];
 }
 
