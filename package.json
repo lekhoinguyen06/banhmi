@@ -30,13 +30,14 @@
     "LICENSE"
   ],
   "scripts": {
-    "bake": "bun run banhmi/index.ts",
+    "bake": "bun run banhmi/banhmi.ts",
     "build": "bunup",
     "publish": "bunup && npm pack && npm publish"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "bunup": "^0.16.32"
+    "bunup": "^0.16.32",
+    "effect": "^4.1.4"
   },
   "peerDependencies": {
     "typescript": "^7"

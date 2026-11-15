@@ -18,5 +18,7 @@ const banhmi = getBanhMi<Domain, View>({
   outDir: "./banhmi/generated",
 });
 
-export const { PAGE, TEXT, CODE, TABLE, FRONTMATTER, write } = banhmi;
+export const { PAGE, TEXT, CODE, TABLE, FRONTMATTER } = banhmi;
 export default banhmi;
+
+banhmi.write();
