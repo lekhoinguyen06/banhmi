@@ -35,6 +35,7 @@
     "publish": "bunup && npm pack && npm publish"
   },
   "devDependencies": {
+    "@effect/platform-node": "^4.1.4",
     "@types/bun": "latest",
     "bunup": "^0.16.32",
     "effect": "^4.1.4"

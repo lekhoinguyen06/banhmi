@@ -1,24 +1,26 @@
-import { getBanhMi } from "../index";
+import { bake } from "../src";
 
 const domains = [
-  "docs_introduction",
-  "docs_concepts",
-  "docs_getstarted",
-  "docs_getstarted_installation",
-  "docs_getstarted_usage",
-  "docs_examples",
-  "dev_preference",
+  "banhmi",
+  "banhmi_why",
+  "banhmi_concept",
+  "banhmi_concept_domain",
+  "banhmi_concept_view",
+  "banhmi_concept_block",
+  "banhmi_setup",
+  "banhmi_setup_installation",
+  "banhmi_setup_instance",
+  "banhmi_setup_write",
 ] as const;
 type Domain = (typeof domains)[number];
-const views = ["s", "m", "l"] as const;
+const views = ["all"] as const;
 type View = (typeof views)[number];
 
-const banhmi = getBanhMi<Domain, View>({
-  srcDir: import.meta.dir,
+const banhmi = bake<Domain, View>({
+  srcDir: "./banhmi",
   outDir: "./banhmi/generated",
+  plugins: [],
 });
 
-export const { PAGE, TEXT, CODE, TABLE, FRONTMATTER } = banhmi;
-export default banhmi;
-
+export const { TEXT, CODE } = banhmi;
 banhmi.write();
