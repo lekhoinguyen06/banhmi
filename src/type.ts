@@ -1,50 +1,30 @@
 type StringContent = string;
 type TableContent = string[][];
 
-export interface BaseBlock<D extends string, V extends string> {
+export interface BlockOptions<D extends string, V extends string> {
   domain: D;
   views: V[];
 }
 
-interface TextBlock<D extends string, V extends string> extends BaseBlock<
-  D,
-  V
-> {
+interface TextBlock {
   type: "text";
   content: StringContent;
 }
 
-interface CodeBlock<D extends string, V extends string> extends BaseBlock<
-  D,
-  V
-> {
+interface CodeBlock {
   type: "code";
   content: StringContent;
 }
 
-interface TableBlock<D extends string, V extends string> extends BaseBlock<
-  D,
-  V
-> {
+interface TableBlock {
   type: "table";
   content: TableContent;
 }
 
 // Primatives
-type BanhMiBlock<D extends string, V extends string> =
-  TextBlock<D, V> | CodeBlock<D, V> | TableBlock<D, V>;
-export type BanhMiDomain = {
-  key: string;
-  name: string;
-  description: string;
-  blocks: BanhMiBlock<string, string>[];
-};
-export type BanhMiView = {
-  key: string;
-  name: string;
-  description: string;
-  blocks: BanhMiBlock<string, string>[];
-};
+export type BanhMiBlock = TextBlock | CodeBlock | TableBlock;
+export type BanhMiDomain = BanhMiBlock[];
+export type BanhMiView = BanhMiBlock[];
 
 /**
  * Lock file structure
@@ -54,9 +34,9 @@ export interface BanhMiLock {
     name: string;
     description: string;
   };
-  blocks: BanhMiBlock<string, string>[];
-  domains: BanhMiDomain[];
-  views: BanhMiView[];
+  blocks: (BanhMiBlock & BlockOptions<string, string>)[];
+  domains: BanhMiDomain;
+  views: BanhMiView;
   artifacts: {
     files: string[];
   };
@@ -76,10 +56,10 @@ export interface BanhMiProps {
 }
 
 export interface BanhMiInstance<D extends string, V extends string> {
-  TEXT: (content: StringContent, options: BaseBlock<D, V>) => void;
+  TEXT: (content: StringContent, options: BlockOptions<D, V>) => void;
   CODE: (
     content: StringContent,
-    options: BaseBlock<D, V> & { language: string },
+    options: BlockOptions<D, V> & { language: string },
   ) => void;
   write: () => void;
 }
