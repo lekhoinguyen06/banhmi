@@ -16,6 +16,6 @@ export const loader = Effect.fn("loader")(function* (props: BanhMiProps) {
         yield* load(entryPath);
         yield* Console.log(`Loaded: ${path.join(props.srcDir, file)}`);
       }),
-    { concurrency: "unbounded" },
+    { concurrency: 1 },
   );
 });

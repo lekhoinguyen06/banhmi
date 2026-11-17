@@ -6,16 +6,16 @@
   "blocks": [
     {
       "type": "text",
-      "content": "\nbanhmi_why\n  ",
-      "domain": "banhmi_why",
+      "content": "\nbanhmi\n  ",
+      "domain": "banhmi",
       "views": [
         "all"
       ]
     },
     {
       "type": "text",
-      "content": "\nbanhmi\n  ",
-      "domain": "banhmi",
+      "content": "\nbanhmi_why\n  ",
+      "domain": "banhmi_why",
       "views": [
         "all"
       ]
@@ -30,8 +30,24 @@
     },
     {
       "type": "text",
+      "content": "\nbanhmi_setup_instance\n  ",
+      "domain": "banhmi_setup_instance",
+      "views": [
+        "all"
+      ]
+    },
+    {
+      "type": "text",
       "content": "\nbanhmi_setup_write\n  ",
       "domain": "banhmi_setup_write",
+      "views": [
+        "all"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "\nbanhmi_setup\n  ",
+      "domain": "banhmi_setup",
       "views": [
         "all"
       ]
@@ -54,16 +70,8 @@
     },
     {
       "type": "text",
-      "content": "\nbanhmi_setup\n  ",
-      "domain": "banhmi_setup",
-      "views": [
-        "all"
-      ]
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup_instance\n  ",
-      "domain": "banhmi_setup_instance",
+      "content": "\nbanhmi_concept\n  ",
+      "domain": "banhmi_concept",
       "views": [
         "all"
       ]
@@ -75,24 +83,16 @@
       "views": [
         "all"
       ]
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept\n  ",
-      "domain": "banhmi_concept",
-      "views": [
-        "all"
-      ]
     }
   ],
   "domains": [
     {
       "type": "text",
-      "content": "\nbanhmi_why\n  "
+      "content": "\nbanhmi\n  "
     },
     {
       "type": "text",
-      "content": "\nbanhmi\n  "
+      "content": "\nbanhmi_why\n  "
     },
     {
       "type": "text",
@@ -100,7 +100,15 @@
     },
     {
       "type": "text",
+      "content": "\nbanhmi_setup_instance\n  "
+    },
+    {
+      "type": "text",
       "content": "\nbanhmi_setup_write\n  "
+    },
+    {
+      "type": "text",
+      "content": "\nbanhmi_setup\n  "
     },
     {
       "type": "text",
@@ -112,29 +120,21 @@
     },
     {
       "type": "text",
-      "content": "\nbanhmi_setup\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup_instance\n  "
+      "content": "\nbanhmi_concept\n  "
     },
     {
       "type": "text",
       "content": "\nbanhmi_concept_view\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept\n  "
     }
   ],
   "views": [
     {
       "type": "text",
-      "content": "\nbanhmi_why\n  "
+      "content": "\nbanhmi\n  "
     },
     {
       "type": "text",
-      "content": "\nbanhmi\n  "
+      "content": "\nbanhmi_why\n  "
     },
     {
       "type": "text",
@@ -142,7 +142,15 @@
     },
     {
       "type": "text",
+      "content": "\nbanhmi_setup_instance\n  "
+    },
+    {
+      "type": "text",
       "content": "\nbanhmi_setup_write\n  "
+    },
+    {
+      "type": "text",
+      "content": "\nbanhmi_setup\n  "
     },
     {
       "type": "text",
@@ -154,19 +162,11 @@
     },
     {
       "type": "text",
-      "content": "\nbanhmi_setup\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup_instance\n  "
+      "content": "\nbanhmi_concept\n  "
     },
     {
       "type": "text",
       "content": "\nbanhmi_concept_view\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept\n  "
     }
   ],
   "artifacts": {

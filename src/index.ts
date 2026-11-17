@@ -95,8 +95,8 @@ export function bake<D extends string, V extends string>(
             Effect.gen(function* () {
               // Run loader to load *.mi.ts files
               yield* loader(props);
-              // Create lock file structure
-              const lockFile: BanhMiLock = {
+              // Create lock object
+              const state: BanhMiLock = {
                 project: {
                   name: "My Project",
                   description: "My Project Description",
@@ -111,11 +111,11 @@ export function bake<D extends string, V extends string>(
 
               // Run plugins to perform side effects or transform lock file
 
-              // Write lock file to disk
+              // Write lock to disk
               yield* writer(
                 props,
                 "banhmi.lock.json",
-                JSON.stringify(lockFile, null, 2),
+                JSON.stringify(state, null, 2),
               );
             }),
           );
