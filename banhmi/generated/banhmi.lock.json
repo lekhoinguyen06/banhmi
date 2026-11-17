@@ -85,90 +85,112 @@
       ]
     }
   ],
-  "domains": [
-    {
-      "type": "text",
-      "content": "\nbanhmi\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_why\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup_installation\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup_instance\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup_write\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept_domain\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept_block\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept_view\n  "
-    }
-  ],
-  "views": [
-    {
-      "type": "text",
-      "content": "\nbanhmi\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_why\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup_installation\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup_instance\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup_write\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_setup\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept_domain\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept_block\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept\n  "
-    },
-    {
-      "type": "text",
-      "content": "\nbanhmi_concept_view\n  "
-    }
-  ],
+  "domains": {
+    "banhmi": [
+      {
+        "type": "text",
+        "content": "\nbanhmi\n  "
+      }
+    ],
+    "banhmi_why": [
+      {
+        "type": "text",
+        "content": "\nbanhmi_why\n  "
+      }
+    ],
+    "banhmi_setup_installation": [
+      {
+        "type": "text",
+        "content": "\nbanhmi_setup_installation\n  "
+      }
+    ],
+    "banhmi_setup_instance": [
+      {
+        "type": "text",
+        "content": "\nbanhmi_setup_instance\n  "
+      }
+    ],
+    "banhmi_setup_write": [
+      {
+        "type": "text",
+        "content": "\nbanhmi_setup_write\n  "
+      }
+    ],
+    "banhmi_setup": [
+      {
+        "type": "text",
+        "content": "\nbanhmi_setup\n  "
+      }
+    ],
+    "banhmi_concept_domain": [
+      {
+        "type": "text",
+        "content": "\nbanhmi_concept_domain\n  "
+      }
+    ],
+    "banhmi_concept_block": [
+      {
+        "type": "text",
+        "content": "\nbanhmi_concept_block\n  "
+      }
+    ],
+    "banhmi_concept": [
+      {
+        "type": "text",
+        "content": "\nbanhmi_concept\n  "
+      }
+    ],
+    "banhmi_concept_view": [
+      {
+        "type": "text",
+        "content": "\nbanhmi_concept_view\n  "
+      }
+    ]
+  },
+  "views": {
+    "all": [
+      {
+        "type": "text",
+        "content": "\nbanhmi\n  "
+      },
+      {
+        "type": "text",
+        "content": "\nbanhmi_why\n  "
+      },
+      {
+        "type": "text",
+        "content": "\nbanhmi_setup_installation\n  "
+      },
+      {
+        "type": "text",
+        "content": "\nbanhmi_setup_instance\n  "
+      },
+      {
+        "type": "text",
+        "content": "\nbanhmi_setup_write\n  "
+      },
+      {
+        "type": "text",
+        "content": "\nbanhmi_setup\n  "
+      },
+      {
+        "type": "text",
+        "content": "\nbanhmi_concept_domain\n  "
+      },
+      {
+        "type": "text",
+        "content": "\nbanhmi_concept_block\n  "
+      },
+      {
+        "type": "text",
+        "content": "\nbanhmi_concept\n  "
+      },
+      {
+        "type": "text",
+        "content": "\nbanhmi_concept_view\n  "
+      }
+    ]
+  },
   "artifacts": {
     "files": []
   }

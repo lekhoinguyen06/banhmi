@@ -1,3 +1,5 @@
+import type { Effect } from "effect";
+
 export type StringContent = string;
 export type TableContent = string[][];
 
@@ -35,8 +37,8 @@ export interface BanhMiLock {
     description: string;
   };
   blocks: (BanhMiBlock & BlockOptions<string, string>)[];
-  domains: BanhMiDomain;
-  views: BanhMiView;
+  domains: Record<string, BanhMiDomain>;
+  views: Record<string, BanhMiView>;
   artifacts: {
     files: string[];
   };
@@ -45,7 +47,10 @@ export interface BanhMiLock {
 /**
  * Plugin
  */
-type BanhMiPlugin = (props: BanhMiLock) => void;
+export type BanhMiPlugin = (props: {
+  props: BanhMiProps;
+  lock: BanhMiLock;
+}) => Effect.Effect<void, never, never>;
 
 export interface BanhMiProps {
   srcDir: string;

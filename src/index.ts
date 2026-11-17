@@ -141,14 +141,17 @@ export function bake<D extends string, V extends string>(
                   description: "My Project Description",
                 },
                 blocks: Array.from(blocks.values()).flat(),
-                domains: Array.from(domains.values()).flat(),
-                views: Array.from(views.values()).flat(),
+                domains: Object.fromEntries(domains.entries()),
+                views: Object.fromEntries(views.entries()),
                 artifacts: {
                   files: [],
                 },
               };
 
               // Run plugins to perform side effects or transform lock file
+              yield* Effect.forEach(props.plugins, (plugin) =>
+                plugin({ props, lock: state }),
+              );
 
               // Write lock to disk
               yield* writer(

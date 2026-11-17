@@ -1,4 +1,5 @@
 import { bake } from "../src";
+import { TSPlugin } from "../src/ts.plugin";
 
 const domains = [
   "banhmi",
@@ -21,7 +22,7 @@ const banhmi = bake<Domain, View>({
   outDir: "./banhmi/generated",
   domains,
   views,
-  plugins: [],
+  plugins: [TSPlugin],
 });
 
 export const { TEXT, CODE } = banhmi;
