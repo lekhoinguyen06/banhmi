@@ -1,4 +1,4 @@
-import { loader } from "./loader";
+import { loader } from "./loaders";
 import type {
   BanhMiBlock,
   BanhMiDomain,
@@ -10,6 +10,7 @@ import type {
 } from "./type";
 import { Effect, Console } from "effect";
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
+import { writer } from "./writers";
 
 const verifyKey = (key: string, set: Set<string>) =>
   Effect.try({
@@ -91,10 +92,7 @@ export function bake<D extends string, V extends string>(
       Effect.runPromise(
         Effect.gen(function* () {
           // Run loader to load *.mi.ts files
-          yield* loader(props).pipe(
-            Effect.provide(NodeFileSystem.layer),
-            Effect.provide(NodePath.layer),
-          );
+          yield* loader(props);
           // Create lock file structure
           const lockFile: BanhMiLock = {
             project: {
@@ -109,15 +107,18 @@ export function bake<D extends string, V extends string>(
             },
           };
 
-          yield* Console.log(
-            "Lock file structure:",
-            JSON.stringify(lockFile, null, 2),
-          );
-
           // Run plugins to perform side effects or transform lock file
 
           // Write lock file to disk
-        }),
+          yield* writer(
+            props,
+            "banhmi.lock.json",
+            JSON.stringify(lockFile, null, 2),
+          );
+        }).pipe(
+          Effect.provide(NodeFileSystem.layer),
+          Effect.provide(NodePath.layer),
+        ),
       );
     },
   };
