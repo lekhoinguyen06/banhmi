@@ -4,44 +4,21 @@
 
 ## Why
 
-Like any breakthroughs, the abstraction level increases. In the AI revolution, implementation is abstracted. We believe the future is about orchestration, the communication of ideas.
+We were building Walker when we realized there are still a lot of short-comes in context management.
 
-However, the current context management practices using `SKILL.md` is not enough.
-We feels there is the lack of:
+For Walker, we need:
 
-- Domain management
-- Context orchestration
-- Parameterization
-
-Therefore, we created "banh mi" to address these issues.
+- 1-shot context. How do we get all the information needed so that inference runs once?
+- Parameter. How does Walker builders orchestrate their context? For instance, larger models can have larger context, how do we orchestrate what matters, or what relavants?
+- Static. How does Walker builders has typed context query capability?
 
 ## How
 
-Your Bánh Mì codebase will be generated files that:
+### Concepts
 
-- Match the Banh Mì query patterns.
-- Typescript types & objects storing block content in the Banh Mi query patterns. Used in [Walker](https://walker.vstaffs.com/) projects.
-
-### Page
-
-Every `*.mi.ts` file must start with a `PAGE` block. Subsequent blocks will be added the page.
-
-### Blocks
-
-We provide 4 types of blocks to help you write your documentation:
-
-- `FRONTMATTER` block: for writing frontmatter content.
-- `TEXT` block: for writing text content.
-- `CODE` block: for writing code content.
-- `TABLE` block: for writing table content.
-
-### Domain
-
-Domain is a group of blocks that encapsulate an idea. Our recommendation is each domain should be a `PAGE` block.
-
-### View
-
-Domains using tree structure is not enough to represent complex domain relationships. Views allow you to tag each block and the compiler will aggregate these block into a page for each view. An example of this would be small, medium, and large context shortcuts - just like `llm-small.txt` or `llm.txt`.
+- Block: a singular unit of context.
+- Domain: a key representing our context domains.
+- View: each block can be tagged to many views to aggregate context in a selected manners
 
 ## Usage
 
@@ -49,50 +26,85 @@ Domains using tree structure is not enough to represent complex domain relations
 
 ```bash
 # NPM
-npm install banhmi
+npm install -D banhmi
 
 # PNPM
-pnpm add banhmi
+pnpm add -D banhmi
 
 # Yarn
-yarn add banhmi
+yarn add -D banhmi
 
 # Bun
-bun add banhmi
+bun add -D banhmi
 ```
 
-### Declaration
+### Bake
 
-You need to create a file to declare your domains and views.
-For example, you can create a file called `banhmi.ts` in your project root directory with the following content:
+```ts
+import { bake } from "../src";
+import { TSPlugin } from "../src/ts.plugin";
 
-```typescript
-import { getBanhMi } from "banhmi";
-
-const domains = ["app", "app_post", "app_comment", "guide"] as const;
+const domains = [
+  "banhmi",
+  "banhmi_why",
+  "banhmi_concept",
+  "banhmi_concept_domain",
+  "banhmi_concept_view",
+  "banhmi_concept_block",
+  "banhmi_setup",
+  "banhmi_setup_installation",
+  "banhmi_setup_instance",
+  "banhmi_setup_write",
+] as const;
 type Domain = (typeof domains)[number];
-const views = ["s", "m", "l"] as const;
+const views = ["all"] as const;
 type View = (typeof views)[number];
 
-const banhmi = getBanhMi<Domain, View>({
-  srcDir: import.meta.dir,
-  outDir: "./docs",
+const banhmi = bake<Domain, View>({
+  srcDir: "./banhmi",
+  outDir: "./banhmi/generated",
+  domains,
+  views,
+  plugins: [TSPlugin],
 });
 
-export const { PAGE, TEXT, CODE, TABLE, FRONTMATTER, write } = banhmi;
-export default banhmi;
+export const { TEXT, CODE } = banhmi;
+banhmi.write();
 ```
 
 ### Example
 
-```typescript
-import { PAGE, TEXT } from "./banhmi";
+```ts
+import { TEXT } from "../banhmi";
 
-PAGE("app", { title: "My App" });
-
-TEXT(`
-# Welcome to My App
-
-This is the documentation for My App.
-`);
+TEXT(
+  `
+banhmi
+  `,
+  {
+    domain: "banhmi",
+    views: ["all"],
+  },
+);
 ```
+
+## Roadmap
+
+The idea is generally similar to OpenAPI Specification.
+
+- Source of truth
+  - CaC (Context as Code)
+  - Editor
+  - Bánh Mì-Compatible context source
+- Generators
+  - Languages
+  - Markdowns
+- Package manager
+  - Add
+  - Remove
+  - Install
+- CLI
+  - Init
+  - Sync
+  - Live
+- Standard library (at Bánh Mì wiki): to conver the most standard context units in many fields.
