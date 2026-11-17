@@ -8,7 +8,7 @@ import type {
   BanhMiView,
   BlockOptions,
 } from "./type";
-import { Effect, Console } from "effect";
+import { Effect, Console, Duration } from "effect";
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
 import { writer } from "./writers";
 
@@ -91,30 +91,35 @@ export function bake<D extends string, V extends string>(
     write() {
       Effect.runPromise(
         Effect.gen(function* () {
-          // Run loader to load *.mi.ts files
-          yield* loader(props);
-          // Create lock file structure
-          const lockFile: BanhMiLock = {
-            project: {
-              name: "My Project",
-              description: "My Project Description",
-            },
-            blocks: Array.from(blocks.values()).flat(),
-            domains: Array.from(domains.values()).flat(),
-            views: Array.from(views.values()).flat(),
-            artifacts: {
-              files: [],
-            },
-          };
+          const [elapsed, _] = yield* Effect.timed(
+            Effect.gen(function* () {
+              // Run loader to load *.mi.ts files
+              yield* loader(props);
+              // Create lock file structure
+              const lockFile: BanhMiLock = {
+                project: {
+                  name: "My Project",
+                  description: "My Project Description",
+                },
+                blocks: Array.from(blocks.values()).flat(),
+                domains: Array.from(domains.values()).flat(),
+                views: Array.from(views.values()).flat(),
+                artifacts: {
+                  files: [],
+                },
+              };
 
-          // Run plugins to perform side effects or transform lock file
+              // Run plugins to perform side effects or transform lock file
 
-          // Write lock file to disk
-          yield* writer(
-            props,
-            "banhmi.lock.json",
-            JSON.stringify(lockFile, null, 2),
+              // Write lock file to disk
+              yield* writer(
+                props,
+                "banhmi.lock.json",
+                JSON.stringify(lockFile, null, 2),
+              );
+            }),
           );
+          yield* Console.log(`🍞 in: ${Duration.toMillis(elapsed)}ms`);
         }).pipe(
           Effect.provide(NodeFileSystem.layer),
           Effect.provide(NodePath.layer),
