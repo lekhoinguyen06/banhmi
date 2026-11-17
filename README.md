@@ -40,7 +40,7 @@ bun add -D banhmi
 
 ### Bake
 
-```ts
+```/banhmi/banhmi.ts
 import { bake } from "../src";
 import { TSPlugin } from "../src/ts.plugin";
 
@@ -72,9 +72,13 @@ export const { TEXT, CODE } = banhmi;
 banhmi.write();
 ```
 
+```bash
+bun run banhmi/banhmi.ts
+```
+
 ### Example
 
-```ts
+```/banhmi/src/index.mi.ts
 import { TEXT } from "../banhmi";
 
 TEXT(
@@ -108,3 +112,4 @@ The idea is generally similar to OpenAPI Specification.
   - Sync
   - Live
 - Standard library (at Bánh Mì wiki): to conver the most standard context units in many fields.
+- Bánh Mì language
