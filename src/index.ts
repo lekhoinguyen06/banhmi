@@ -104,7 +104,7 @@ export function bake<D extends string, V extends string>(
     CODE(content: string, options: BlockOptions<D, V>) {
       Effect.runSync(
         processBlock({
-          block: { type: "text", content },
+          block: { type: "code", content },
           options,
           domainKeys,
           viewKeys,
