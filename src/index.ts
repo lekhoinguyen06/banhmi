@@ -7,6 +7,8 @@ import type {
   BanhMiProps,
   BanhMiView,
   BlockOptions,
+  StringContent,
+  TableContent,
 } from "./type";
 import { Effect, Console, Duration } from "effect";
 import { NodeFileSystem, NodePath } from "@effect/platform-node";
@@ -30,6 +32,49 @@ const verifyKeys = (keys: ReadonlyArray<string>, set: Set<string>) =>
     concurrency: "unbounded",
   });
 
+const processBlock = Effect.fn(function* ({
+  block,
+  options,
+  domainKeys,
+  viewKeys,
+  blocks,
+  domains,
+  views,
+}: {
+  block: BanhMiBlock;
+  options: BlockOptions<string, string>;
+  domainKeys: Set<string>;
+  viewKeys: Set<string>;
+  blocks: Map<string, (BanhMiBlock & BlockOptions<string, string>)[]>;
+  domains: Map<string, BanhMiDomain>;
+  views: Map<string, BanhMiView>;
+}) {
+  const verifiedDomainKey = yield* verifyKey(options.domain, domainKeys);
+  const verifiedViewKeys = yield* verifyKeys(options.views, viewKeys);
+
+  blocks.set(verifiedDomainKey, [
+    ...(blocks.get(verifiedDomainKey) ?? []),
+    {
+      ...block,
+      ...options,
+    },
+  ]);
+
+  domains.set(verifiedDomainKey, [
+    ...(domains.get(verifiedDomainKey) ?? []),
+    block,
+  ]);
+
+  yield* Effect.forEach(
+    verifiedViewKeys,
+    (key) =>
+      Effect.sync(() => {
+        views.set(key, [...(views.get(key) ?? []), block]);
+      }),
+    { concurrency: "unbounded" },
+  );
+});
+
 export function bake<D extends string, V extends string>(
   props: BanhMiProps,
 ): BanhMiInstance<D, V> {
@@ -43,51 +88,45 @@ export function bake<D extends string, V extends string>(
   const views = new Map<string, BanhMiView>();
 
   return {
-    TEXT(content: string, options: BlockOptions<D, V>) {
+    TEXT(content: StringContent, options: BlockOptions<D, V>) {
       Effect.runSync(
-        Effect.gen(function* () {
-          const verifiedDomainKey = yield* verifyKey(
-            options.domain,
-            domainKeys,
-          );
-          const verifiedViewKeys = yield* verifyKeys(options.views, viewKeys);
-
-          blocks.set(verifiedDomainKey, [
-            ...(blocks.get(verifiedDomainKey) ?? []),
-            {
-              type: "text",
-              content,
-              domain: verifiedDomainKey,
-              views: verifiedViewKeys,
-            },
-          ]);
-
-          domains.set(verifiedDomainKey, [
-            ...(domains.get(verifiedDomainKey) ?? []),
-            {
-              type: "text",
-              content,
-            },
-          ]);
-
-          yield* Effect.forEach(
-            verifiedViewKeys,
-            (key) =>
-              Effect.sync(() => {
-                views.set(key, [
-                  ...(views.get(key) ?? []),
-                  {
-                    type: "text",
-                    content,
-                  },
-                ]);
-              }),
-            { concurrency: "unbounded" },
-          );
+        processBlock({
+          block: { type: "text", content },
+          options,
+          domainKeys,
+          viewKeys,
+          blocks,
+          domains,
+          views,
         }),
       );
     },
-    CODE(content: string, options: BlockOptions<D, V>) {},
+    CODE(content: string, options: BlockOptions<D, V>) {
+      Effect.runSync(
+        processBlock({
+          block: { type: "text", content },
+          options,
+          domainKeys,
+          viewKeys,
+          blocks,
+          domains,
+          views,
+        }),
+      );
+    },
+    TABLE(content: TableContent, options: BlockOptions<D, V>) {
+      Effect.runSync(
+        processBlock({
+          block: { type: "table", content },
+          options,
+          domainKeys,
+          viewKeys,
+          blocks,
+          domains,
+          views,
+        }),
+      );
+    },
     write() {
       Effect.runPromise(
         Effect.gen(function* () {

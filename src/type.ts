@@ -1,5 +1,5 @@
-type StringContent = string;
-type TableContent = string[][];
+export type StringContent = string;
+export type TableContent = string[][];
 
 export interface BlockOptions<D extends string, V extends string> {
   domain: D;
@@ -61,5 +61,6 @@ export interface BanhMiInstance<D extends string, V extends string> {
     content: StringContent,
     options: BlockOptions<D, V> & { language: string },
   ) => void;
+  TABLE: (content: TableContent, options: BlockOptions<D, V>) => void;
   write: () => void;
 }
