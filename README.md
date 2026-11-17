@@ -94,7 +94,7 @@ banhmi
 
 ## Roadmap
 
-The idea is generally similar to OpenAPI Specification.
+The idea is generally similar to OpenAPI Specification. So far, we have only implement CaC with generator plugin for Typescript, but in the future, we would like to:
 
 - Source of truth
   - CaC (Context as Code)
