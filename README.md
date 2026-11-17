@@ -94,7 +94,7 @@ banhmi
 
 ## Roadmap
 
-The idea is generally similar to OpenAPI Specification. So far, we have only implement CaC with generator plugin for Typescript, but in the future, we would like to:
+The idea is generally similar to OpenAPI Specification.
 
 - Source of truth
   - CaC (Context as Code)
@@ -113,3 +113,6 @@ The idea is generally similar to OpenAPI Specification. So far, we have only imp
   - Live
 - Standard library (at Bánh Mì wiki): to conver the most standard context units in many fields.
 - Bánh Mì language
+-
+
+So far, we have only implement CaC with generator plugin for Typescript, but this is the future we are looking for.
