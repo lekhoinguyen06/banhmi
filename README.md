@@ -1,6 +1,6 @@
-# 🍞 banhmi
+# 🍞 Bánh Mì
 
-"bánh mì" is a Vietnamese word that means "bread".
+"Bánh Mì" is a Vietnamese word that means "bread".
 
 ## Why
 
