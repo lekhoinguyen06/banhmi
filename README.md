@@ -4,7 +4,7 @@
 
 ## Why
 
-We were building Walker when we realized there are still a lot of short-comes in context management.
+We were building [Walker](https://github.com/lekhoinguyen06/walker) when we realized there are still a lot of short-comes in context management.
 
 For Walker, we need:
 
@@ -94,7 +94,7 @@ banhmi
 
 ## Roadmap
 
-The idea is generally similar to OpenAPI Specification.
+The idea is generally similar to OpenAPI Specification. This is the future we are looking towards:
 
 - Source of truth
   - CaC (Context as Code)
@@ -113,6 +113,5 @@ The idea is generally similar to OpenAPI Specification.
   - Live
 - Standard library (at Bánh Mì wiki): to conver the most standard context units in many fields.
 - Bánh Mì language
--
 
-So far, we have only implement CaC with generator plugin for Typescript, but this is the future we are looking for.
+So far, we have only implement CaC with generator plugin for Typescript.
