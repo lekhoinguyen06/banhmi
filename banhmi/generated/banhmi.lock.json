@@ -6,7 +6,7 @@
   "blocks": [
     {
       "type": "text",
-      "content": "\nbanhmi\n  ",
+      "content": "\n# 🍞 bánh mì\n\n\"bánh mì\" is a Vietnamese word that means \"bread\".\n  ",
       "domain": "banhmi",
       "views": [
         "all"
@@ -14,7 +14,7 @@
     },
     {
       "type": "text",
-      "content": "\nbanhmi_why\n  ",
+      "content": "\n## Why\n\nWe were building [Walker](https://github.com/lekhoinguyen06/walker) when we realized there are still a lot of short-comes in context management.\n\nFor Walker, we need:\n\n- 1-shot context. How do we get all the information needed so that inference runs once?\n- Parameter. How does Walker builders orchestrate their context? For instance, larger models can have larger context, how do we orchestrate what matters, or what relavants?\n- Static. How does Walker builders has typed context query capability?\n  ",
       "domain": "banhmi_why",
       "views": [
         "all"
@@ -89,13 +89,13 @@
     "banhmi": [
       {
         "type": "text",
-        "content": "\nbanhmi\n  "
+        "content": "\n# 🍞 bánh mì\n\n\"bánh mì\" is a Vietnamese word that means \"bread\".\n  "
       }
     ],
     "banhmi_why": [
       {
         "type": "text",
-        "content": "\nbanhmi_why\n  "
+        "content": "\n## Why\n\nWe were building [Walker](https://github.com/lekhoinguyen06/walker) when we realized there are still a lot of short-comes in context management.\n\nFor Walker, we need:\n\n- 1-shot context. How do we get all the information needed so that inference runs once?\n- Parameter. How does Walker builders orchestrate their context? For instance, larger models can have larger context, how do we orchestrate what matters, or what relavants?\n- Static. How does Walker builders has typed context query capability?\n  "
       }
     ],
     "banhmi_setup_installation": [
@@ -151,11 +151,11 @@
     "all": [
       {
         "type": "text",
-        "content": "\nbanhmi\n  "
+        "content": "\n# 🍞 bánh mì\n\n\"bánh mì\" is a Vietnamese word that means \"bread\".\n  "
       },
       {
         "type": "text",
-        "content": "\nbanhmi_why\n  "
+        "content": "\n## Why\n\nWe were building [Walker](https://github.com/lekhoinguyen06/walker) when we realized there are still a lot of short-comes in context management.\n\nFor Walker, we need:\n\n- 1-shot context. How do we get all the information needed so that inference runs once?\n- Parameter. How does Walker builders orchestrate their context? For instance, larger models can have larger context, how do we orchestrate what matters, or what relavants?\n- Static. How does Walker builders has typed context query capability?\n  "
       },
       {
         "type": "text",

@@ -2,7 +2,9 @@ import { TEXT } from "../banhmi";
 
 TEXT(
   `
-banhmi
+# 🍞 bánh mì
+
+"bánh mì" is a Vietnamese word that means "bread".
   `,
   {
     domain: "banhmi",

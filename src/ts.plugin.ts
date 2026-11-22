@@ -16,7 +16,13 @@ export const TSPlugin: BanhMiPlugin = Effect.fn(function* (props) {
     domains
       .map(
         (d) =>
-          `export const ${d[0]} = ${JSON.stringify(
+          `/**
+* Domain: ${d[0]}\n
+* Length: ${d[1].map((b) => b.content).join("\n").length}
+* Content:
+${d[1].map((b) => `* ${b.content}`).join("\n")}
+*/
+export const ${d[0]} = ${JSON.stringify(
             d[1].map((b) => b.content).join("\n"),
             null,
             2,
@@ -26,7 +32,12 @@ export const TSPlugin: BanhMiPlugin = Effect.fn(function* (props) {
     views
       .map(
         (v) =>
-          `export const ${v[0]} = ${JSON.stringify(
+          `/**
+* Domain: ${v[0]}\n
+* Length: ${v[1].map((b) => b.content).join("\n").length}
+* Content:
+${v[1].map((v) => `* ${v.content}`).join("\n")}
+*/export const ${v[0]} = ${JSON.stringify(
             v[1].map((b) => b.content).join("\n"),
             null,
             2,
