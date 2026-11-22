@@ -1,6 +1,6 @@
 import { Effect, Path } from "effect";
-import type { BanhMiPlugin } from "./type";
-import { writer } from "./writers";
+import type { BanhMiPlugin } from "../type";
+import { writer } from "../writers";
 import { NodeFileSystem } from "@effect/platform-node";
 
 /**

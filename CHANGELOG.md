@@ -1,5 +1,9 @@
 # Change log
 
+## v0.1.7
+
+- Add TSPlugin
+
 ## v0.1.6
 
 - Use Effect internally

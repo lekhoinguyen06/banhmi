@@ -1,5 +1,5 @@
 import { bake } from "../src";
-import { TSPlugin } from "../src/ts.plugin";
+import { TSPlugin } from "../src/plugins";
 
 const domains = [
   "banhmi",
