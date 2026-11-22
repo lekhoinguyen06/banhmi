@@ -1,5 +1,11 @@
 # Change log
 
+## v0.1.6
+
+- Use Effect internally
+- Generate Typescript
+- Remove Markdown generation
+
 ## v0.1.5
 
 - Fix cleanup machenism from removing view pages files
