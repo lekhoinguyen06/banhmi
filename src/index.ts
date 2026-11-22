@@ -101,10 +101,13 @@ export function bake<D extends string, V extends string>(
         }),
       );
     },
-    CODE(content: string, options: BlockOptions<D, V>) {
+    CODE(content: string, options: BlockOptions<D, V> & { language?: string }) {
       Effect.runSync(
         processBlock({
-          block: { type: "code", content },
+          block: {
+            type: "code",
+            content: "```" + options.language + "\n" + content + "\n```",
+          },
           options,
           domainKeys,
           viewKeys,

@@ -2,7 +2,9 @@ import { TEXT } from "../../banhmi";
 
 TEXT(
   `
-banhmi_concept_block
+# Block
+
+A singular unit of context.
   `,
   {
     domain: "banhmi_concept_block",

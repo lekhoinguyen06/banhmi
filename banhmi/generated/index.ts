@@ -3,6 +3,7 @@
 * Domain: banhmi
 
 * Length: 68
+
 * Content:
 * 
 # 🍞 bánh mì
@@ -16,6 +17,7 @@ export const banhmi = "\n# 🍞 bánh mì\n\n\"bánh mì\" is a Vietnamese word 
 * Domain: banhmi_why
 
 * Length: 511
+
 * Content:
 * 
 ## Why
@@ -34,95 +36,143 @@ export const banhmi_why = "\n## Why\n\nWe were building [Walker](https://github.
 /**
 * Domain: banhmi_setup_installation
 
-* Length: 29
+* Length: 141
+
 * Content:
 * 
-banhmi_setup_installation
+# Installation
   
+* ```bash
+
+# NPM
+npm install -D banhmi
+
+# PNPM
+pnpm add -D banhmi
+
+# Yarn
+yarn add -D banhmi
+
+# Bun
+bun add -D banhmi
+  
+```
 */
-export const banhmi_setup_installation = "\nbanhmi_setup_installation\n  " as const;
+export const banhmi_setup_installation = "\n# Installation\n  \n```bash\n\n# NPM\nnpm install -D banhmi\n\n# PNPM\npnpm add -D banhmi\n\n# Yarn\nyarn add -D banhmi\n\n# Bun\nbun add -D banhmi\n  \n```" as const;
 
 /**
 * Domain: banhmi_setup_instance
 
-* Length: 25
+* Length: 699
+
 * Content:
 * 
-banhmi_setup_instance
+# Bake
+
+To create a `banhmi` instance, bake it!
   
+* ```ts
+
+import { bake } from "../src";
+import { TSPlugin } from "../src/ts.plugin";
+
+const domains = [
+  "banhmi",
+  "banhmi_why",
+  "banhmi_concept",
+  "banhmi_concept_domain",
+  "banhmi_concept_view",
+  "banhmi_concept_block",
+  "banhmi_setup",
+  "banhmi_setup_installation",
+  "banhmi_setup_instance",
+  "banhmi_setup_write",
+] as const;
+type Domain = (typeof domains)[number];
+const views = ["all"] as const;
+type View = (typeof views)[number];
+
+const banhmi = bake<Domain, View>({
+  srcDir: "./banhmi",
+  outDir: "./banhmi/generated",
+  domains,
+  views,
+  plugins: [TSPlugin],
+});
+
+export const { TEXT, CODE } = banhmi;
+banhmi.write();
+  
+```
 */
-export const banhmi_setup_instance = "\nbanhmi_setup_instance\n  " as const;
+export const banhmi_setup_instance = "\n# Bake\n\nTo create a `banhmi` instance, bake it!\n  \n```ts\n\nimport { bake } from \"../src\";\nimport { TSPlugin } from \"../src/ts.plugin\";\n\nconst domains = [\n  \"banhmi\",\n  \"banhmi_why\",\n  \"banhmi_concept\",\n  \"banhmi_concept_domain\",\n  \"banhmi_concept_view\",\n  \"banhmi_concept_block\",\n  \"banhmi_setup\",\n  \"banhmi_setup_installation\",\n  \"banhmi_setup_instance\",\n  \"banhmi_setup_write\",\n] as const;\ntype Domain = (typeof domains)[number];\nconst views = [\"all\"] as const;\ntype View = (typeof views)[number];\n\nconst banhmi = bake<Domain, View>({\n  srcDir: \"./banhmi\",\n  outDir: \"./banhmi/generated\",\n  domains,\n  views,\n  plugins: [TSPlugin],\n});\n\nexport const { TEXT, CODE } = banhmi;\nbanhmi.write();\n  \n```" as const;
 
 /**
 * Domain: banhmi_setup_write
 
-* Length: 22
+* Length: 115
+
 * Content:
 * 
-banhmi_setup_write
-  
-*/
-export const banhmi_setup_write = "\nbanhmi_setup_write\n  " as const;
+#  Eat
 
-/**
-* Domain: banhmi_setup
-
-* Length: 16
-* Content:
-* 
-banhmi_setup
+To generate `banhmi` lock file and other assets, eat your `banhmi`!
   
+* ```bash
+
+bun run <your-banhmi>
+
+```
 */
-export const banhmi_setup = "\nbanhmi_setup\n  " as const;
+export const banhmi_setup_write = "\n#  Eat\n\nTo generate `banhmi` lock file and other assets, eat your `banhmi`!\n  \n```bash\n\nbun run <your-banhmi>\n\n```" as const;
 
 /**
 * Domain: banhmi_concept_domain
 
-* Length: 25
+* Length: 54
+
 * Content:
 * 
-banhmi_concept_domain
+# Domain
+
+As key representing our context domains.
   
 */
-export const banhmi_concept_domain = "\nbanhmi_concept_domain\n  " as const;
+export const banhmi_concept_domain = "\n# Domain\n\nAs key representing our context domains.\n  " as const;
 
 /**
 * Domain: banhmi_concept_block
 
-* Length: 24
+* Length: 40
+
 * Content:
 * 
-banhmi_concept_block
+# Block
+
+A singular unit of context.
   
 */
-export const banhmi_concept_block = "\nbanhmi_concept_block\n  " as const;
-
-/**
-* Domain: banhmi_concept
-
-* Length: 18
-* Content:
-* 
-banhmi_concept
-  
-*/
-export const banhmi_concept = "\nbanhmi_concept\n  " as const;
+export const banhmi_concept_block = "\n# Block\n\nA singular unit of context.\n  " as const;
 
 /**
 * Domain: banhmi_concept_view
 
-* Length: 23
+* Length: 94
+
 * Content:
 * 
-banhmi_concept_view
+# View
+
+Each block can be tagged to many views to aggregate context in a selected manners.
   
 */
-export const banhmi_concept_view = "\nbanhmi_concept_view\n  " as const;
+export const banhmi_concept_view = "\n# View\n\nEach block can be tagged to many views to aggregate context in a selected manners.\n  " as const;
 
 /**
-* Domain: all
+* View: all
 
-* Length: 770
+* Length: 1729
+
 * Content:
 * 
 # 🍞 bánh mì
@@ -141,28 +191,85 @@ For Walker, we need:
 - Static. How does Walker builders has typed context query capability?
   
 * 
-banhmi_setup_installation
+# Installation
+  
+* ```bash
+
+# NPM
+npm install -D banhmi
+
+# PNPM
+pnpm add -D banhmi
+
+# Yarn
+yarn add -D banhmi
+
+# Bun
+bun add -D banhmi
+  
+```
+* 
+# Bake
+
+To create a `banhmi` instance, bake it!
+  
+* ```ts
+
+import { bake } from "../src";
+import { TSPlugin } from "../src/ts.plugin";
+
+const domains = [
+  "banhmi",
+  "banhmi_why",
+  "banhmi_concept",
+  "banhmi_concept_domain",
+  "banhmi_concept_view",
+  "banhmi_concept_block",
+  "banhmi_setup",
+  "banhmi_setup_installation",
+  "banhmi_setup_instance",
+  "banhmi_setup_write",
+] as const;
+type Domain = (typeof domains)[number];
+const views = ["all"] as const;
+type View = (typeof views)[number];
+
+const banhmi = bake<Domain, View>({
+  srcDir: "./banhmi",
+  outDir: "./banhmi/generated",
+  domains,
+  views,
+  plugins: [TSPlugin],
+});
+
+export const { TEXT, CODE } = banhmi;
+banhmi.write();
+  
+```
+* 
+#  Eat
+
+To generate `banhmi` lock file and other assets, eat your `banhmi`!
+  
+* ```bash
+
+bun run <your-banhmi>
+
+```
+* 
+# Domain
+
+As key representing our context domains.
   
 * 
-banhmi_setup_instance
+# Block
+
+A singular unit of context.
   
 * 
-banhmi_setup_write
+# View
+
+Each block can be tagged to many views to aggregate context in a selected manners.
   
-* 
-banhmi_setup
-  
-* 
-banhmi_concept_domain
-  
-* 
-banhmi_concept_block
-  
-* 
-banhmi_concept
-  
-* 
-banhmi_concept_view
-  
-*/export const all = "\n# 🍞 bánh mì\n\n\"bánh mì\" is a Vietnamese word that means \"bread\".\n  \n\n## Why\n\nWe were building [Walker](https://github.com/lekhoinguyen06/walker) when we realized there are still a lot of short-comes in context management.\n\nFor Walker, we need:\n\n- 1-shot context. How do we get all the information needed so that inference runs once?\n- Parameter. How does Walker builders orchestrate their context? For instance, larger models can have larger context, how do we orchestrate what matters, or what relavants?\n- Static. How does Walker builders has typed context query capability?\n  \n\nbanhmi_setup_installation\n  \n\nbanhmi_setup_instance\n  \n\nbanhmi_setup_write\n  \n\nbanhmi_setup\n  \n\nbanhmi_concept_domain\n  \n\nbanhmi_concept_block\n  \n\nbanhmi_concept\n  \n\nbanhmi_concept_view\n  " as const;
+*/export const all = "\n# 🍞 bánh mì\n\n\"bánh mì\" is a Vietnamese word that means \"bread\".\n  \n\n## Why\n\nWe were building [Walker](https://github.com/lekhoinguyen06/walker) when we realized there are still a lot of short-comes in context management.\n\nFor Walker, we need:\n\n- 1-shot context. How do we get all the information needed so that inference runs once?\n- Parameter. How does Walker builders orchestrate their context? For instance, larger models can have larger context, how do we orchestrate what matters, or what relavants?\n- Static. How does Walker builders has typed context query capability?\n  \n\n# Installation\n  \n```bash\n\n# NPM\nnpm install -D banhmi\n\n# PNPM\npnpm add -D banhmi\n\n# Yarn\nyarn add -D banhmi\n\n# Bun\nbun add -D banhmi\n  \n```\n\n# Bake\n\nTo create a `banhmi` instance, bake it!\n  \n```ts\n\nimport { bake } from \"../src\";\nimport { TSPlugin } from \"../src/ts.plugin\";\n\nconst domains = [\n  \"banhmi\",\n  \"banhmi_why\",\n  \"banhmi_concept\",\n  \"banhmi_concept_domain\",\n  \"banhmi_concept_view\",\n  \"banhmi_concept_block\",\n  \"banhmi_setup\",\n  \"banhmi_setup_installation\",\n  \"banhmi_setup_instance\",\n  \"banhmi_setup_write\",\n] as const;\ntype Domain = (typeof domains)[number];\nconst views = [\"all\"] as const;\ntype View = (typeof views)[number];\n\nconst banhmi = bake<Domain, View>({\n  srcDir: \"./banhmi\",\n  outDir: \"./banhmi/generated\",\n  domains,\n  views,\n  plugins: [TSPlugin],\n});\n\nexport const { TEXT, CODE } = banhmi;\nbanhmi.write();\n  \n```\n\n#  Eat\n\nTo generate `banhmi` lock file and other assets, eat your `banhmi`!\n  \n```bash\n\nbun run <your-banhmi>\n\n```\n\n# Domain\n\nAs key representing our context domains.\n  \n\n# Block\n\nA singular unit of context.\n  \n\n# View\n\nEach block can be tagged to many views to aggregate context in a selected manners.\n  " as const;
 
