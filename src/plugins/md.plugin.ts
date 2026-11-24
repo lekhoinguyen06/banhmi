@@ -30,23 +30,31 @@ function renderIndex({
           <h1>🍞 bánh mì</h1>${
             Object.entries(lock.domains)
               .map(
-                ([name]) =>
-                  `<div><a href="${basePath}/${name}">Domain: ${name}</a></div>`,
+                ([key]) =>
+                  `<div><a href="${basePath}/${key}">Domain: ${key}</a></div>`,
               )
               .join("\n") +
             Object.entries(lock.views)
               .map(
-                ([name]) =>
-                  `<div><a href="${basePath}/${name}">View: ${name}</a></div>`,
+                ([key]) =>
+                  `<div><a href="${basePath}/${key}">View: ${key}</a></div>`,
               )
               .join("\n")
           }</body>
 </html>`;
 }
 
-function render(kind: "Domain" | "View", name: string, blocks: BanhMiBlock[]) {
+function render({
+  kind,
+  key,
+  blocks,
+}: {
+  kind: "Domain" | "View";
+  key: string;
+  blocks: BanhMiBlock[];
+}) {
   const value = blocks.map((b) => b.content).join("\n");
-  return ["---", "title: " + name, "---", `${value}`].join("\n");
+  return ["---", "key: " + key, "---", `${value}`].join("\n");
 }
 
 /**
@@ -57,18 +65,26 @@ function render(kind: "Domain" | "View", name: string, blocks: BanhMiBlock[]) {
 export const MDPlugin =
   (options: MDPluginOptions = {}): BanhMiPlugin =>
   async ({ props, lock }) => {
-    const $domainWrites = Object.entries(lock.domains).map(([name, blocks]) =>
+    const $domainWrites = Object.entries(lock.domains).map(([key, blocks]) =>
       writer(
         { ...props, outDir: options.outDir ?? props.outDir },
-        name + ".md",
-        render("Domain", name, blocks),
+        key + ".md",
+        render({
+          kind: "Domain",
+          key,
+          blocks,
+        }),
       ),
     );
-    const $viewWrites = Object.entries(lock.views).map(([name, blocks]) =>
+    const $viewWrites = Object.entries(lock.views).map(([key, blocks]) =>
       writer(
         { ...props, outDir: options.outDir ?? props.outDir },
-        name + ".md",
-        render("View", name, blocks),
+        key + ".md",
+        render({
+          kind: "View",
+          key,
+          blocks,
+        }),
       ),
     );
     const $indexWrite = writer(
