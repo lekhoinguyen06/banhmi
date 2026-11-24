@@ -1,15 +1,14 @@
-import { Console, Effect, FileSystem, Path } from "effect";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 import type { BanhMiProps } from "./type";
 
-export const writer = Effect.fn(function* (
+export const writer = async (
   props: BanhMiProps,
   filePath: string,
   data: string,
-) {
-  const fs = yield* FileSystem.FileSystem;
-  const path = yield* Path.Path;
+): Promise<void> => {
   const fullPath = path.join(props.outDir, filePath);
-  yield* Console.log(`Writing lock file: ${path.join(props.outDir, filePath)}`);
-  yield* fs.makeDirectory(path.dirname(fullPath), { recursive: true });
-  yield* fs.writeFileString(path.join(props.outDir, filePath), data);
-});
+  console.log(`Writing file: ${fullPath}`);
+  await mkdir(path.dirname(fullPath), { recursive: true });
+  await writeFile(fullPath, data);
+};

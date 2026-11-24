@@ -1,5 +1,3 @@
-import type { Effect } from "effect";
-
 export type StringContent = string;
 export type TableContent = string[][];
 
@@ -50,7 +48,7 @@ export interface BanhMiLock {
 export type BanhMiPlugin = (props: {
   props: BanhMiProps;
   lock: BanhMiLock;
-}) => Effect.Effect<void, never, never>;
+}) => Promise<void>;
 
 export interface BanhMiProps {
   srcDir: string;
@@ -67,5 +65,5 @@ export interface BanhMiInstance<D extends string, V extends string> {
     options: BlockOptions<D, V> & { language: string },
   ) => void;
   TABLE: (content: TableContent, options: BlockOptions<D, V>) => void;
-  write: () => void;
+  write: () => Promise<void>;
 }

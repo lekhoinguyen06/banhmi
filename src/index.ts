@@ -10,29 +10,19 @@ import type {
   StringContent,
   TableContent,
 } from "./type";
-import { Effect, Console, Duration } from "effect";
-import { NodeFileSystem, NodePath } from "@effect/platform-node";
 import { writer } from "./writers";
 
-const verifyKey = (key: string, set: Set<string>) =>
-  Effect.try({
-    try: () => {
-      if (!set.has(key)) {
-        throw new Error(`Invalid key: ${key}`);
-      }
-      return key;
-    },
-    catch: (error) => {
-      Console.error(error);
-    },
-  });
+const verifyKey = (key: string, set: Set<string>): string => {
+  if (!set.has(key)) {
+    throw new Error(`Invalid key: ${key}`);
+  }
+  return key;
+};
 
-const verifyKeys = (keys: ReadonlyArray<string>, set: Set<string>) =>
-  Effect.forEach(keys, (key) => verifyKey(key, set), {
-    concurrency: "unbounded",
-  });
+const verifyKeys = (keys: readonly string[], set: Set<string>): string[] =>
+  keys.map((key) => verifyKey(key, set));
 
-const processBlock = Effect.fn(function* ({
+function processBlock({
   block,
   options,
   domainKeys,
@@ -49,8 +39,8 @@ const processBlock = Effect.fn(function* ({
   domains: Map<string, BanhMiDomain>;
   views: Map<string, BanhMiView>;
 }) {
-  const verifiedDomainKey = yield* verifyKey(options.domain, domainKeys);
-  const verifiedViewKeys = yield* verifyKeys(options.views, viewKeys);
+  const verifiedDomainKey = verifyKey(options.domain, domainKeys);
+  const verifiedViewKeys = verifyKeys(options.views, viewKeys);
 
   blocks.set(verifiedDomainKey, [
     ...(blocks.get(verifiedDomainKey) ?? []),
@@ -65,15 +55,10 @@ const processBlock = Effect.fn(function* ({
     block,
   ]);
 
-  yield* Effect.forEach(
-    verifiedViewKeys,
-    (key) =>
-      Effect.sync(() => {
-        views.set(key, [...(views.get(key) ?? []), block]);
-      }),
-    { concurrency: "unbounded" },
-  );
-});
+  for (const key of verifiedViewKeys) {
+    views.set(key, [...(views.get(key) ?? []), block]);
+  }
+}
 
 export function bake<D extends string, V extends string>(
   props: BanhMiProps,
@@ -89,87 +74,70 @@ export function bake<D extends string, V extends string>(
 
   return {
     TEXT(content: StringContent, options: BlockOptions<D, V>) {
-      Effect.runSync(
-        processBlock({
-          block: { type: "text", content },
-          options,
-          domainKeys,
-          viewKeys,
-          blocks,
-          domains,
-          views,
-        }),
-      );
+      processBlock({
+        block: { type: "text", content },
+        options,
+        domainKeys,
+        viewKeys,
+        blocks,
+        domains,
+        views,
+      });
     },
     CODE(content: string, options: BlockOptions<D, V> & { language?: string }) {
-      Effect.runSync(
-        processBlock({
-          block: {
-            type: "code",
-            content: "```" + options.language + "\n" + content + "\n```",
-          },
-          options,
-          domainKeys,
-          viewKeys,
-          blocks,
-          domains,
-          views,
-        }),
-      );
+      processBlock({
+        block: {
+          type: "code",
+          content: "```" + options.language + "\n" + content + "\n```",
+        },
+        options,
+        domainKeys,
+        viewKeys,
+        blocks,
+        domains,
+        views,
+      });
     },
     TABLE(content: TableContent, options: BlockOptions<D, V>) {
-      Effect.runSync(
-        processBlock({
-          block: { type: "table", content },
-          options,
-          domainKeys,
-          viewKeys,
-          blocks,
-          domains,
-          views,
-        }),
-      );
+      processBlock({
+        block: { type: "table", content },
+        options,
+        domainKeys,
+        viewKeys,
+        blocks,
+        domains,
+        views,
+      });
     },
-    write() {
-      Effect.runPromise(
-        Effect.gen(function* () {
-          const [elapsed, _] = yield* Effect.timed(
-            Effect.gen(function* () {
-              // Run loader to load *.mi.ts files
-              yield* loader(props);
-              // Create lock object
-              const state: BanhMiLock = {
-                project: {
-                  name: "My Project",
-                  description: "My Project Description",
-                },
-                blocks: Array.from(blocks.values()).flat(),
-                domains: Object.fromEntries(domains.entries()),
-                views: Object.fromEntries(views.entries()),
-                artifacts: {
-                  files: [],
-                },
-              };
+    async write() {
+      const start = performance.now();
 
-              // Run plugins to perform side effects or transform lock file
-              yield* Effect.forEach(props.plugins, (plugin) =>
-                plugin({ props, lock: state }),
-              );
+      // Run loader to load *.mi.ts files
+      await loader(props);
 
-              // Write lock to disk
-              yield* writer(
-                props,
-                "banhmi.lock.json",
-                JSON.stringify(state, null, 2),
-              );
-            }),
-          );
-          yield* Console.log(`🍞 in: ${Duration.toMillis(elapsed)}ms`);
-        }).pipe(
-          Effect.provide(NodeFileSystem.layer),
-          Effect.provide(NodePath.layer),
-        ),
-      );
+      // Create lock object
+      const state: BanhMiLock = {
+        project: {
+          name: "My Project",
+          description: "My Project Description",
+        },
+        blocks: Array.from(blocks.values()).flat(),
+        domains: Object.fromEntries(domains.entries()),
+        views: Object.fromEntries(views.entries()),
+        artifacts: {
+          files: [],
+        },
+      };
+
+      // Run plugins to perform side effects or transform lock file
+      for (const plugin of props.plugins) {
+        await plugin({ props, lock: state });
+      }
+
+      // Write lock to disk
+      await writer(props, "banhmi.lock.json", JSON.stringify(state, null, 2));
+
+      console.log(`🍞 in: ${performance.now() - start}ms`);
     },
   };
 }
