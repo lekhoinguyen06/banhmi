@@ -22,7 +22,7 @@ const banhmi = bake<Domain, View>({
   outDir: "./playground/banhmi/generated",
   domains,
   views,
-  plugins: [TSPlugin],
+  plugins: [TSPlugin()],
 });
 
 export const { TEXT, CODE } = banhmi;

@@ -22,30 +22,6 @@
     },
     {
       "type": "text",
-      "content": "\n# Domain\n\nAs key representing our context domains.\n  ",
-      "domain": "banhmi_concept_domain",
-      "views": [
-        "all"
-      ]
-    },
-    {
-      "type": "text",
-      "content": "\n# Block\n\nA singular unit of context.\n  ",
-      "domain": "banhmi_concept_block",
-      "views": [
-        "all"
-      ]
-    },
-    {
-      "type": "text",
-      "content": "\n# View\n\nEach block can be tagged to many views to aggregate context in a selected manners.\n  ",
-      "domain": "banhmi_concept_view",
-      "views": [
-        "all"
-      ]
-    },
-    {
-      "type": "text",
       "content": "\n# Installation\n  ",
       "domain": "banhmi_setup_installation",
       "views": [
@@ -94,6 +70,30 @@
         "all"
       ],
       "language": "bash"
+    },
+    {
+      "type": "text",
+      "content": "\n# Domain\n\nAs key representing our context domains.\n  ",
+      "domain": "banhmi_concept_domain",
+      "views": [
+        "all"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "\n# Block\n\nA singular unit of context.\n  ",
+      "domain": "banhmi_concept_block",
+      "views": [
+        "all"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "\n# View\n\nEach block can be tagged to many views to aggregate context in a selected manners.\n  ",
+      "domain": "banhmi_concept_view",
+      "views": [
+        "all"
+      ]
     }
   ],
   "domains": {
@@ -107,24 +107,6 @@
       {
         "type": "text",
         "content": "\n## Why\n\nWe were building [Walker](https://github.com/lekhoinguyen06/walker) when we realized there are still a lot of short-comes in context management.\n\nFor Walker, we need:\n\n- 1-shot context. How do we get all the information needed so that inference runs once?\n- Parameter. How does Walker builders orchestrate their context? For instance, larger models can have larger context, how do we orchestrate what matters, or what relavants?\n- Static. How does Walker builders has typed context query capability?\n  "
-      }
-    ],
-    "banhmi_concept_domain": [
-      {
-        "type": "text",
-        "content": "\n# Domain\n\nAs key representing our context domains.\n  "
-      }
-    ],
-    "banhmi_concept_block": [
-      {
-        "type": "text",
-        "content": "\n# Block\n\nA singular unit of context.\n  "
-      }
-    ],
-    "banhmi_concept_view": [
-      {
-        "type": "text",
-        "content": "\n# View\n\nEach block can be tagged to many views to aggregate context in a selected manners.\n  "
       }
     ],
     "banhmi_setup_installation": [
@@ -156,6 +138,24 @@
         "type": "code",
         "content": "```bash\n\nbun run <your-banhmi>\n\n```"
       }
+    ],
+    "banhmi_concept_domain": [
+      {
+        "type": "text",
+        "content": "\n# Domain\n\nAs key representing our context domains.\n  "
+      }
+    ],
+    "banhmi_concept_block": [
+      {
+        "type": "text",
+        "content": "\n# Block\n\nA singular unit of context.\n  "
+      }
+    ],
+    "banhmi_concept_view": [
+      {
+        "type": "text",
+        "content": "\n# View\n\nEach block can be tagged to many views to aggregate context in a selected manners.\n  "
+      }
     ]
   },
   "views": {
@@ -167,18 +167,6 @@
       {
         "type": "text",
         "content": "\n## Why\n\nWe were building [Walker](https://github.com/lekhoinguyen06/walker) when we realized there are still a lot of short-comes in context management.\n\nFor Walker, we need:\n\n- 1-shot context. How do we get all the information needed so that inference runs once?\n- Parameter. How does Walker builders orchestrate their context? For instance, larger models can have larger context, how do we orchestrate what matters, or what relavants?\n- Static. How does Walker builders has typed context query capability?\n  "
-      },
-      {
-        "type": "text",
-        "content": "\n# Domain\n\nAs key representing our context domains.\n  "
-      },
-      {
-        "type": "text",
-        "content": "\n# Block\n\nA singular unit of context.\n  "
-      },
-      {
-        "type": "text",
-        "content": "\n# View\n\nEach block can be tagged to many views to aggregate context in a selected manners.\n  "
       },
       {
         "type": "text",
@@ -203,6 +191,18 @@
       {
         "type": "code",
         "content": "```bash\n\nbun run <your-banhmi>\n\n```"
+      },
+      {
+        "type": "text",
+        "content": "\n# Domain\n\nAs key representing our context domains.\n  "
+      },
+      {
+        "type": "text",
+        "content": "\n# Block\n\nA singular unit of context.\n  "
+      },
+      {
+        "type": "text",
+        "content": "\n# View\n\nEach block can be tagged to many views to aggregate context in a selected manners.\n  "
       }
     ]
   },
