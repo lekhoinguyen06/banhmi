@@ -25,7 +25,7 @@ const banhmi = bake<Domain, View>({
   plugins: [
     TSPlugin(),
     MDPlugin({
-      outDir: "./playground/src/pages/banhmi",
+      outDir: "./playground/src/pages",
     }),
   ],
 });
