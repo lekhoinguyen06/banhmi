@@ -2,7 +2,7 @@ import { TEXT } from "../banhmi";
 
 TEXT(
   `
-## Why
+# Why
 
 We were building [Walker](https://github.com/lekhoinguyen06/walker) when we realized there are still a lot of short-comes in context management.
 
