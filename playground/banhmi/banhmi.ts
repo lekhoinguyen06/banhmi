@@ -25,7 +25,7 @@ const banhmi = bake<Domain, View>({
   plugins: [
     TSPlugin(),
     MDPlugin({
-      outDir: "./playground/banhmi/generated/markdowns",
+      outDir: "./playground/src/pages/banhmi",
     }),
   ],
 });

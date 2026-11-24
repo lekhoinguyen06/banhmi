@@ -18,6 +18,21 @@ For Walker, we need:
 - Static. How does Walker builders has typed context query capability?
   
 
+# Domain
+
+As key representing our context domains.
+  
+
+# Block
+
+A singular unit of context.
+  
+
+# View
+
+Each block can be tagged to many views to aggregate context in a selected manners.
+  
+
 # Installation
   
 ```bash
@@ -83,18 +98,3 @@ To generate `banhmi` lock file and other assets, eat your `banhmi`!
 bun run <your-banhmi>
 
 ```
-
-# Domain
-
-As key representing our context domains.
-  
-
-# Block
-
-A singular unit of context.
-  
-
-# View
-
-Each block can be tagged to many views to aggregate context in a selected manners.
-  

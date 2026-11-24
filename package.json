@@ -34,7 +34,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "play": "bun run playground/banhmi/banhmi.ts",
+    "bake": "bun run playground/banhmi/banhmi.ts",
+    "play": "cd ./playground && bun run dev",
     "build": "bunup",
     "publish": "bunup && npm pack && npm publish"
   },
