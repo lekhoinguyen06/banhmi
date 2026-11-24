@@ -1,5 +1,5 @@
-import { bake } from "../src";
-import { TSPlugin } from "../src/plugins";
+import { bake } from "../../src";
+import { TSPlugin } from "../../src/plugins";
 
 const domains = [
   "banhmi",
@@ -18,8 +18,8 @@ const views = ["all"] as const;
 type View = (typeof views)[number];
 
 const banhmi = bake<Domain, View>({
-  srcDir: "./banhmi",
-  outDir: "./banhmi/generated",
+  srcDir: "./playground/banhmi",
+  outDir: "./playground/banhmi/generated",
   domains,
   views,
   plugins: [TSPlugin],
