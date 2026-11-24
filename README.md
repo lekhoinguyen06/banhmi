@@ -114,4 +114,4 @@ The idea is generally similar to OpenAPI Specification. This is the future we ar
 - Standard library (at Bánh Mì wiki): to conver the most standard context units in many fields.
 - Bánh Mì language
 
-So far, we have only implement CaC with generator plugin for Typescript.
+So far, we have only implement CaC with generator plugins for Typescript and Markdown.

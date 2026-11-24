@@ -1,5 +1,10 @@
 # Change log
 
+## v0.1.8
+
+- Un-Effect
+- Add Markdown Generator Plugin
+
 ## v0.1.7
 
 - Add TSPlugin
