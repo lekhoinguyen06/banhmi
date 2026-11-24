@@ -1,5 +1,5 @@
 ---
-title: banhmi_concept_block
+key: banhmi_concept_block
 ---
 
 # Block

@@ -1,5 +1,5 @@
 ---
-title: banhmi_concept_view
+key: banhmi_concept_view
 ---
 
 # View

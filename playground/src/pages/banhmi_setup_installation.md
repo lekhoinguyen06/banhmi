@@ -1,5 +1,5 @@
 ---
-title: banhmi_setup_installation
+key: banhmi_setup_installation
 ---
 
 # Installation

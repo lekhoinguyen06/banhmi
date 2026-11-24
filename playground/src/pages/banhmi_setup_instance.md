@@ -1,5 +1,5 @@
 ---
-title: banhmi_setup_instance
+key: banhmi_setup_instance
 ---
 
 # Bake

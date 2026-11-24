@@ -1,5 +1,5 @@
 ---
-title: banhmi_concept_domain
+key: banhmi_concept_domain
 ---
 
 # Domain

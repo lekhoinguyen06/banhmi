@@ -1,5 +1,5 @@
 ---
-title: banhmi
+key: banhmi
 ---
 
 # 🍞 bánh mì

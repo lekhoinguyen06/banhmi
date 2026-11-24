@@ -1,5 +1,5 @@
 ---
-title: all
+key: all
 ---
 
 # 🍞 bánh mì
@@ -16,21 +16,6 @@ For Walker, we need:
 - 1-shot context. How do we get all the information needed so that inference runs once?
 - Parameter. How does Walker builders orchestrate their context? For instance, larger models can have larger context, how do we orchestrate what matters, or what relavants?
 - Static. How does Walker builders has typed context query capability?
-  
-
-# Domain
-
-As key representing our context domains.
-  
-
-# Block
-
-A singular unit of context.
-  
-
-# View
-
-Each block can be tagged to many views to aggregate context in a selected manners.
   
 
 # Installation
@@ -98,3 +83,18 @@ To generate `banhmi` lock file and other assets, eat your `banhmi`!
 bun run <your-banhmi>
 
 ```
+
+# Domain
+
+As key representing our context domains.
+  
+
+# Block
+
+A singular unit of context.
+  
+
+# View
+
+Each block can be tagged to many views to aggregate context in a selected manners.
+  

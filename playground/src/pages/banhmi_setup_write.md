@@ -1,5 +1,5 @@
 ---
-title: banhmi_setup_write
+key: banhmi_setup_write
 ---
 
 #  Eat
